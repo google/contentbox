@@ -1,0 +1,64 @@
+// _404.scss
+
+.error-page {
+	.error {
+		height: 250px;
+		// @include a-center;
+		position: relative;
+		margin-top: 20%;
+	}
+	img, .title {
+		// display: block;
+		// float: left;
+	}
+	.image {
+		padding-bottom: $col-offset;
+	}
+	img {
+		max-width: 100%;
+		position: relative;
+		display: inline-block;
+		@include center();
+		// max-width: 
+		// float: right;
+		// @include a-center;
+	}
+	.image, img {
+		max-height: 93%;
+		height: 100%;
+		min-height: 200px;
+		min-width: 200px;
+	}
+	.title {
+		// @include max-lines(3, 1.4em);
+		margin-bottom: $col-offset / 2;		
+	}
+	p {
+		font-size: 0.8em;
+		line-height: 1.4em;
+	}
+	.button {
+		margin-top: $col-offset;		
+	}
+}
+
+// ====================
+// MEDIA QUERIES
+// ====================
+
+// Mobile
+@mixin media-mobile-error-page() {
+	.error-page {
+		.error {
+			height: auto;
+			margin-top: 30%;
+			padding-bottom: $col-offset * 5.5;
+		}
+		img {
+			height: 150px;
+			width: 150px;
+		}
+	}
+}
+
+// 

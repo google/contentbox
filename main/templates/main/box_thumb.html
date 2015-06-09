@@ -1,0 +1,81 @@
+<!--Copyright 2015 Google Inc. All Rights Reserved.
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.-->
+
+{% load i18n %}
+{% load staticfiles %}
+{% load url from future %}
+{% load youtube_embed %}
+{% load box_thumb %}
+
+<li class="box thumb c3-15 cols{% for boxtag in box.boxtag_set.all %} {{ boxtag.tag.slug }}{% endfor %} {{ box.language.slug }} {{ box.type }}">
+	<div class="inner-box">
+		<div class="image">
+			{% if registered %}
+    			{% if unsuscribe %}
+    				<div class="call-to-action leave-box" onclick="leave_box(this,{{ box.id }});">
+    					<span class="message delay-1">{% trans "Leave Box" %}</span>
+    					<i class="fa-times ficon"></i>
+    				</div>
+    			{% else %}
+    				<div class="call-to-action registered">
+    					<span class="message delay-1">{% trans "Registered" %}</span>
+    					<i class="fa-check-circle ficon"></i>
+    				</div>
+    			{% endif %}
+			{% else %}
+			{% endif %}
+			<img class="front-img" src="{{ box.image.url }}" />
+			<img class="back-img" src="{{ box.back_image.url }}" />
+		</div>
+		<div class="data">
+			<h3 class="box-name">{{ box.title }}</h3>
+			<div class="c15-15 cols">
+				<ul class="tags">
+					{% for boxtag in box.boxtag_set.all %}
+						<li class="tag">
+							<img
+								class="tag-img"
+								src="{{ boxtag.tag.icon.url }}"
+								title="{{ boxtag.tag.title }}" />
+						</li>
+					{% endfor %}
+				</ul>
+
+				<a class="call-to-action enter" style="z-index: 40;" href="{% url 'main:box_detail' box.slug %}">
+					{% if registered %}
+						<span class="message delay-1">{% trans "Enter" %}</span>
+					{% else %}
+						<span class="message delay-1">{% trans "Register" %}</span>
+					{% endif %}
+					<i class="fa-arrow-circle-right ficon"></i>
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="box-preview {% preview_position_v boxes|length forloop.counter %} {{ forloop.counter0|preview_position_h }} ">
+		<div class="inner-preview c15-15 cols">
+			<i class="ficon ficon-close fa-times delay-1" onclick="close_preview($(this))"></i>
+			<div class="box-video row">
+				<iframe src="{{ box.units.all.0.video_link|youtube_embed_url }}" frameborder="0" allowfullscreen></iframe>
+			</div>
+			<div class="preview-data">
+				<h5 class="title">{{ box.title }}</h5>
+				<a class="button medium blue float-right button-start" href="{% url 'main:box_detail' box.slug %}">
+					{% if register %}{% trans "Register" %}{% else %}{% trans "Enter" %}{% endif %}
+				</a>
+			</div>
+		</div>
+	</div>
+</li>

@@ -1,0 +1,30 @@
+// _vars_mobile.scss
+
+// Main Z-Index'es
+$bottom-level:	-5;
+$medium-level:	1;
+$top-level:		10;	
+
+
+// COLORS
+$title-color:	hsl(0, 0, 45);
+$text-color: 	hsl(0, 0, 55);
+
+h1,h2,h3,h4,h5,h6 {
+	color: $title-color;
+}
+body, div, p, span, strong, i, b, u {
+	color: $text-color;
+}
+a {
+	color: $title-color;
+}
+
+// Navigation Toggle BUTTON
+// $navigation-size: 3.5em;
+$navigation-size: 	55px;
+$col-offset:		$m-offset;
+
+// Reajustando el path hacia la carpeta de las imagenes
+$imgPath: '../../img/';
+

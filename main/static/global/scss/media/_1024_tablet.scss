@@ -1,0 +1,39 @@
+/* 
+* _1024_tablet.scss
+* Resoluciones hasta 1024 de ancho en tablets
+*/
+
+// Aca hay que incluir como un @mixin todas las reglas
+// que deban funcionar en resoluciones menores a 800px de ancho
+// Ej.: @include media-1024_tablet-footer;
+
+// ======================================================================
+
+// @include media-1024-footer();
+
+
+// Section - Header
+// ===============================
+@include media-1024_tablet-header();
+
+
+// Section - Content
+// ===============================
+@include media-1024_tablet-content();
+
+// Section - SideNav
+// ===============================
+@include media-1024_tablet-sidenav-main();
+
+
+// Section - Wall
+// ===============================
+// @include media-1024_tablet-wall();
+@include media-1024-wall();
+
+
+// Section - Detail
+// ===============================
+@include media-1024_tablet-sidenav-detail();
+@include media-1024_tablet-subheader();
+@include media-1024_tablet-detail();

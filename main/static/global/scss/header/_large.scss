@@ -1,0 +1,48 @@
+// _large.scss
+
+// =================
+// LARGE
+// =================
+.header-large {
+	position: relative;
+	width: 100%;
+	height: $large-header-height;
+	padding-top: $col-offset;
+	padding-bottom: $col-offset;
+	background-color: $color-2;
+	min-height: initial;
+	@include header-box-shadow();
+	.logo {
+		height: 75%;
+	}
+	.header-title {
+		position: absolute;
+		left: 0;
+		bottom: $header-bottom;
+		padding-left: $col-offset * 2;
+		float: none;
+		padding-top: 0;
+		padding-bottom: 0;
+		.title {
+			color: white;
+			font-size: em(45px);
+			line-height: 48px;
+			margin: 0;
+			padding-left: 0.1em;
+			@include text-shadow( 0 1px 0 rgba( $dark-blue, 0.4 ) );
+		}		
+	}
+	#main-nav {
+		float: none;
+		width: 100%;
+	}
+	#options {
+		padding-top: 0;
+		padding-bottom: 0;
+		// padding-top: $col-offset / 2;
+		// padding-bottom: $col-offset / 2;
+		.item {
+			// float: right;
+		}
+	}
+}

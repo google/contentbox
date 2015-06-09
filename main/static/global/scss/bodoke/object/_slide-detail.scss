@@ -1,0 +1,75 @@
+// _slide-detail.scss
+
+$baseline-offset:	20px;	
+$bottom-baseline:	$baseline-offset;
+$left-baseline:		$baseline-offset;
+
+.slide-detail {
+	position: absolute;
+	top: 0;
+	right: -100%;
+	z-index: 10;
+	height: 100%;
+	width: 50%;
+	@include box-shadow( -4px 0 10px 0 rgba(0, 0, 0, 0.4) );
+	@include transition( right ($transition-time * 4) ease-out );
+	@include background( white(), 1);
+	&.open {
+		right: 0;
+	}
+	
+	// ================
+	// Back
+	// ================
+	.back {
+		display: block;
+		position: absolute;
+		left: -$icon-size / 2;
+		// top: $detail-offset + ($icon-size / 2);
+		top: 50px;
+		width: $icon-size;
+		height: $icon-size;
+		@include border-radius( 50% );
+		@include box-shadow( 0 0 1 3px black(0.4) );
+		@include background( black(), 0.9 );
+		z-index: 2;
+	}
+
+	// ================
+	// Detail Image
+	// ================
+	.detail-image {
+		@include aspect-ratio( calculate-ratio(16,8), 'img' );
+		margin-bottom: $col-offset;
+	}
+
+	// ================
+	// Google Plus Button
+	// ================
+	.g-plus-button {
+		position: absolute;
+		right: -15px; // $left-baseline;
+		bottom: $bottom-baseline;
+		z-index: 10;
+	}
+
+	// ================
+	// Detail Title
+	// ================
+	.detail-title {
+	
+	}
+
+	// ================
+	// Detail Text
+	// ================
+	.text {
+		
+	}
+}
+
+@include netbook() {
+	.slide-detail {
+		font-size: 12px;
+	}
+}

@@ -1,0 +1,11 @@
+URL: http://github.com/google/google-api-python-client/
+Version: 1.4.1
+License: Apache 2.0
+License File: LICENSE
+
+Description:
+The Google API Client for Python is a client library for accessing the Plus,
+Moderator, and many other Google APIs.
+
+Local Modifications:
+No Modifications.

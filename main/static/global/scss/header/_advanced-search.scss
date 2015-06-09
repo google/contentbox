@@ -1,0 +1,173 @@
+// _advanced-search.scss
+
+#advanced-search {
+	display: none;
+	position: absolute;
+	top: $header-bottom; // _header.scss
+	left: 0;
+	background-color: white;
+	border: 1px solid $gray-border;
+	@include header-box-shadow();
+	padding-top: $col-offset;
+	padding-bottom: $col-offset;
+	min-height: $header-option-size;
+	.list {
+		width: 100%;
+		display: block;
+		border-bottom: 1px solid $gray-border;
+		&.content-type {
+			border-bottom: none;
+		}
+	}
+	.item {
+		// padding-right: $col-offset;
+		// padding-left: $col-offset;
+		label {
+			cursor: pointer;			
+		}
+	}
+	[type="checkbox"] {
+		@include border-radius(0);
+		outline: 1px solid $gray-border;
+		height: $icon-size / 2;
+		width: $icon-size / 2;
+		&:checked {
+			border: 2px solid white;
+			background-color: $gray-dark;			
+		}		
+	}
+	.title {
+		padding-bottom: $col-offset / 2;
+		margin-bottom: $col-offset;
+		border-bottom: 1px solid $gray-border;
+	}
+	.two-cols {
+		@include cols();
+		width: 50%;
+		.title {
+			font-size: 1em;
+			margin-bottom: $col-offset / 2;
+			border: none;
+		}
+		select {
+			width: 100%;
+			line-height: 1.6em;
+			height: 2.8em;
+			background-image: icon( 'caret-down.png' );
+			background-position: 98% center;
+			background-position: right 10px center;
+			background-repeat: no-repeat;
+			background-size: 12px;
+		}
+	}
+	// ====================
+	// Language Filter	
+	// ====================
+	.language.list {		
+		.item-lang {
+			// $lang-size: (100% / 13);
+			@include border-radius(0);
+			// width: $lang-size;
+			// height: $lang-size / 1.5;
+			// margin-right: calc( #{$lang-size} - 1.4em );
+			// margin-top: $col-offset / 2;
+			&:nth-child(12n) {
+				// margin-right: 0;
+			}
+			img {
+				@include opacity(0.5);
+				width: 100%;
+				border: 1px solid gray(240);
+			}
+			label {
+				width: 100%;
+				display: block;
+				position: relative;
+			}
+			&:hover, &.active {
+				img {
+					border: 1px solid gray(200);
+					@include opacity(1);					
+				}
+			}
+		}
+		[type="checkbox"] {
+			display: none;
+		}		
+	}
+	// ====================
+	// Content Type Filter	
+	// ====================
+	.content-type.list {
+		line-height: $header-option-size;
+		.item {
+			padding-right: $col-offset;
+		}
+		label {
+			line-height: $icon-size / 2;
+			font-size: 0.9em;
+		}
+		[type="checkbox"] {}
+	}
+}
+
+
+
+// ====================
+// Z-INDEX
+// ====================
+#advanced-search {
+	z-index: 50;
+}
+
+
+
+
+// ==========================
+// LENGUAJES
+// ==========================
+
+	
+
+
+
+// ==========================
+// MEDIA QUERIES
+// ==========================
+// Mobile
+@mixin media-mobile-advanced-search {
+	#advanced-search {
+		width: 150%;
+		left: -25%;
+		.language.list {
+			.item-lang {
+				$lang-size: (100% / 4);
+				width: $lang-size;
+				margin-right: 0;
+				margin-bottom: $col-offset;
+				margin-right: calc( #{$lang-size} - 18px );
+				&:nth-child(3n) {
+					margin-right: 0;					
+				}
+			}
+		}
+		.content-type.list {
+			label {
+				padding-top: ($col-offset / 2);
+				padding-bottom: ($col-offset / 2);
+			}
+		}
+	}
+}
+// 800
+@mixin media-800-advanced-search {
+	#main-side-nav {
+		// @include main-sidenav-language(8);
+	}
+}
+// 1280
+@mixin media-1280-advanced-search {
+	#main-side-nav {
+		// @include main-sidenav-language(10);
+	}
+}

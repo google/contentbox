@@ -1,0 +1,11 @@
+URL: https://github.com/idan/oauthlib
+Version: 0.7.2
+License: BSD License
+License File: LICENSE
+
+Description:
+A generic, spec-compliant, thorough implementation of the OAuth request-signing
+logic.
+
+Local Modifications:
+No Modifications.

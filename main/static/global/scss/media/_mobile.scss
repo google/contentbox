@@ -1,0 +1,69 @@
+// _mobile.scss
+
+/* 
+* _mobile.scss
+* Resoluciones para mobile
+*/
+
+// Aca hay que incluir como un @mixin todas las reglas
+// que deban funcionar en resoluciones para tamaño mobile
+// Ej.: @include media-mobile-footer;
+
+// ======================================================================
+
+body {
+	overflow: hidden;
+	overflow-y: auto;
+	// &.full {
+		// &, .container {
+			// &, .inner-container, > .row {
+				// height: auto;
+			// }
+		// }
+	// }
+}
+
+// Content
+@include media-mobile-content();
+// Header
+@include media-mobile-header();
+@include media-mobile-offcanvas();
+@include media-mobile-search();
+@include media-mobile-advanced-search();
+@include media-mobile-notifications();
+@include media-mobile-subheader();
+
+// Side Nav
+@include media-mobile-sidenav();
+@include media-mobile-sidenav-main();
+@include media-mobile-sidenav-detail();
+// Content
+@include media-mobile-content();
+// Boxes
+@include media-mobile-boxes();
+@include media-mobile-box();
+@include media-mobile-box-preview();
+@include media-box-calltoaction-visible();
+// My Boxes
+@include media-mobile-wall();
+// Box Detail
+@include media-mobile-box-detail();
+// Footer
+@include media-mobile-footer();
+
+// Error pages
+@include media-mobile-error-page();
+
+
+// ==============================
+// BOTON PARA LOGUEARSE EN MOBILE
+// ==============================
+#mobile-login {
+	@include clear();
+	padding-top: $col-offset;
+	padding-bottom: $col-offset;
+	margin-top: $header-height;
+	.button {
+		width: 100%;
+	}
+}

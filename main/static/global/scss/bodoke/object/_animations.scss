@@ -1,0 +1,477 @@
+// _animations.scss
+
+
+// ===================================
+// CONFIGURACIÓN
+// ===================================
+// Activa/Desactiva animaciones
+
+// Fades
+$animation-fadeIn:					false;
+$animation-fadeInLeft:				false;
+$animation-fadeInLeftDisplay:		false;
+$animation-fadeInUp:				false;
+$animation-fadeInFromRightToLeft:	true;
+$animation-fadeInFromLeftToRight:	true;
+
+// Fades Out
+$animation-fadeOutLeft:				true;
+
+// Efectos
+$animation-bounceUp:				false;
+$animation-pulse:					false;
+$animation-spin:					false;
+
+// Entradas
+$animation-showFromRight:			false;
+$animation-showFromLeft:			false;
+$animation-fadeFromRight:			false;
+$animation-fadeFromLeft:			false;
+$animation-showSlideDown:			false;
+
+// Salidas
+$animation-hideSlideUp:				false;
+
+// Delay en las animaciones
+$animation-delay:					true;
+$animation-delay-count:				8;
+
+
+
+
+
+// ===================================
+// ANIMACIONES
+// ===================================
+
+// Fade In - (without affecting display property)
+@if ( $animation-fadeIn ) {
+	$animation-name: fadeIn;
+	@include keyframes($animation-name) {
+		0% 	 { opacity: 0; }
+		100% { opacity: 1; }
+	}
+	.#{$animation-name} { @include animation( $animation-name 1s ); }
+}
+	
+// Fade In Left - (without affecting display property)
+@if ( $animation-fadeInLeft ) {
+	$animation-name: fadeInLeft;
+	@include keyframes($animation-name) {
+		0% { 
+			@include transform( translate3d(-10px, 0, 0) );
+			opacity: 0;
+		}
+		100% { 
+			@include transform( translate3d(0px, 0, 0) );
+			opacity: 1;
+		}
+	}
+	.#{$animation-name} { @include animation( $animation-name 1s ); }
+}
+
+// Fade In Left Display - Afecta a la propiedad display
+@if ( $animation-fadeInLeftDisplay ) {
+	$animation-name: fadeInLeftDisplay;
+	@include keyframes($animation-name) {
+		0% { 
+			@include transform( translate3d(-10px, 0, 0) );
+			opacity: 0;
+			display:none;
+		}
+		100% { 
+			@include transform( translate3d(0px, 0, 0) );
+			opacity: 1;
+			display: block;
+		}
+	}
+	.#{$animation-name} { @include animation( $animation-name 1s ); }
+}
+
+
+
+
+// ========================
+// DESDE LA DERECHA
+// ========================
+// Fade in form Right to Left
+@if ( $animation-fadeInFromRightToLeft ) {
+	$animation-name: fadeInFromRightToLeft;
+	@include keyframes($animation-name) {
+		0%	 { 
+			@include transform( translateX(50px) );
+			opacity: 0; 
+		}
+		100% { 
+			@include transform( translateX(0px) );
+			opacity: 1; 
+		}
+	}
+	.#{$animation-name} { @include animation( $animation-name 1s ); }	
+}
+
+
+// ========================
+// DESDE LA IZQUIERDA
+// ========================
+// Fade in form Left to Right
+@if ( $animation-fadeInFromLeftToRight ) {
+	$animation-name: fadeInFromLeftToRight;
+	@include keyframes($animation-name) {
+		0%	 { 
+			@include transform( translateX(-50px) );
+			opacity: 0; 
+		}
+		100% { 
+			@include transform( translateX(0px) );
+			opacity: 1; 
+		}
+	}
+	.#{$animation-name} { @include animation( $animation-name 1s ); }	
+}
+
+
+
+
+
+// ========================
+// DESDE ARRIBA
+// ========================
+// Fade in from up
+@if ( $animation-fadeInUp ) {
+	$animation-name: fadeInUp;
+	@include keyframes($animation-name) {
+		0%	 { 
+			@include transform( translateY(-10px) );
+			opacity: 0; 
+		}
+		100% { 
+			@include transform( translateY(0px) );
+			opacity: 1; 
+		}
+	}
+	.#{$animation-name} { @include animation( $animation-name 1s ); }	
+}
+
+
+
+
+
+
+// Fade Out to the left
+@if ( $animation-fadeOutLeft ) {
+	$animation-name: fadeOutLeft;
+	@include keyframes($animation-name) {
+		0%	 { 
+			@include transform( translateX(5px) );
+			opacity: 1;
+		}
+		100% { 
+			@include transform( translateX(-50px) );
+			opacity: 0;
+		}
+	}
+	.#{$animation-name} { @include animation( $animation-name 1s ); }	
+}
+
+
+
+
+// Bounce Up
+@if ( $animation-bounceUp ) {
+	$animation-name: bounceUp;
+	@include keyframes($animation-name) {
+		0%	 { 
+			@include transform( translate3d(0, -10px, 0) ); 
+		}
+		50%	 { 
+			@include transform( translate3d(0, 10px, 0) ); 
+		}
+		100% { 
+			@include transform( translate3d(0, -10px, 0) ); 
+		}
+	}
+	.#{$animation-name} { @include animation( $animation-name 1s ); }	
+}
+
+// Spin
+@if ( $animation-spin ) {
+	$animation-name: spin;
+	@include keyframes($animation-name) {
+		0% 	 {
+			@include transform( rotate(0) ); 
+		}
+		100% {
+			@include transform( rotate(360deg) ); 
+		}
+	}
+	.#{$animation-name} { @include animation( $animation-name 1s, true ); }	
+}
+
+// Pulse
+@if ( $animation-pulse ) {
+	$animation-name: pulse;
+	@include keyframes($animation-name) {
+		0% 	 {
+			@include transform( scale(1) ); 
+		}
+		50%  {
+			@include transform( scale(1.25) ); 
+		}
+		100% {
+			@include transform( scale(1) ); 
+		}
+	}
+	.#{$animation-name} { @include animation( $animation-name 1s ); }	
+}
+
+
+// =====================
+// FROM RIGHT TO POINT
+// =====================
+@if ( $animation-showFromRight ) {
+
+	// Show from right - Normal Distance
+	$animation-name: showFromRight-1;
+	@include keyframes($animation-name) {
+		0%	 { 
+			@include transform( translateX(6000px) ); 
+		}
+		100% { 
+			@include transform( translateX(0) ); 
+		}
+	}
+	.#{$animation-name} { @include animation( $animation-name 1s ); }
+
+	// Show from right - Far distance
+	$animation-name: showFromRight-2;
+	@include keyframes($animation-name) {
+		0% 	 { 
+			@include transform( translateX(8500px) ); 
+		}
+		100% { 
+			@include transform( translateX(0) ); 
+		}
+	}
+	.#{$animation-name} { @include animation( $animation-name 1s ); }
+
+	// Show from right - So much far distance
+	$animation-name: showFromRight-3;
+	@include keyframes($animation-name) {
+		0% 	 { 
+			@include transform( translateX(15000px) ); 
+		}
+		100% { 
+			@include transform( translateX(0) ); 
+		}
+	}
+	.#{$animation-name} { @include animation( $animation-name 1s ); }
+
+	// Show from right - Normal Distance
+	$animation-name: showFromRightPos-1;
+	@include keyframes($animation-name) {
+		0% 	 { left: 6000px; }
+		100% { left: 0; }
+	}
+	.#{$animation-name} { @include animation( $animation-name 1s ); }	
+
+}
+
+
+// =====================
+// FROM LEFT TO POINT
+// =====================
+@if ( $animation-showFromLeft ) {
+	
+	// Show from left - Normal Distance
+	$animation-name: showFromLeft-1;
+	@include keyframes($animation-name) {
+		0% 	 { 
+			@include transform( translateX(-6000px) ); 
+		}
+		100% { 
+			@include transform( translateX(0) ); 
+		}
+	}
+	.#{$animation-name} { @include animation( $animation-name $transition-time * 2 ); }
+	
+	// Show from left - Far distance
+	$animation-name: showFromLeft-2;
+	@include keyframes($animation-name) {
+		0%	 { 
+			@include transform( translateX(-8500px) );
+		}
+		100% { 
+			@include transform( translateX(0) );
+		}
+	}
+	.#{$animation-name} { @include animation( $animation-name $transition-time * 4 ); }
+	
+	// Show from left - So much far distance
+	$animation-name: showFromLeft-3;
+	@include keyframes($animation-name) {
+		0% 	 { 
+			@include transform( translateX(-15000px) ); 
+		}
+		100% { 
+			@include transform( translateX(0) ); 
+		}
+	}
+	.#{$animation-name} { @include animation( $animation-name $transition-time * 6 ); }
+
+}
+
+
+
+// ===========================
+// FADE FROM RIGHT TO POINT
+// ===========================
+@if ( $animation-fadeFromRight ) {
+
+	// FadeIn from left - Normal Distance
+	$animation-name: fadeFromRight-1;
+	@include keyframes($animation-name) {
+		0%	 { 
+			@include opacity(0); 
+			@include transform( translateX(6000px) ); 
+		}
+		100% { 
+			@include opacity(1); 
+			@include transform( translateX(0) ); 
+		}
+	}
+	.#{$animation-name} { @include opacity(0); @include animation( $animation-name 1s ); }
+	// FadeIn from left - Far distance
+	$animation-name: fadeFromRight-2;
+	@include keyframes($animation-name) {
+		0% 	 { 
+			@include opacity(0); 
+			@include transform( translateX(8500px) ); 
+		}
+		100% { 
+			@include opacity(1); 
+			@include transform( translateX(0) ); 
+		}
+	}
+	.#{$animation-name} { @include opacity(0); @include animation( $animation-name 1s ); }
+	// FadeIn from left - So much far distance
+	$animation-name: fadeFromRight-3;
+	@include keyframes($animation-name) {
+		0% 	 { 
+			@include opacity(0); 
+			@include transform( translateX(15000px) ); 
+		}
+		100% { 
+			@include opacity(1); 
+			@include transform( translateX(0) ); 
+		}
+	}
+	.#{$animation-name} { @include opacity(0); @include animation( $animation-name 1s ); }
+
+}
+
+
+
+// ===========================
+// FADE FROM LEFT TO POINT
+// ===========================
+@if ( $animation-fadeFromLeft ) {
+
+	// FadeIn from left - Normal Distance
+	$animation-name: fadeFromLeft-1;
+	@include keyframes($animation-name) {
+		0% 	 { 
+			opacity: 0;
+			@include transform( translateX(-6000px) );
+		}
+		100% { 
+			opacity: 1;
+			@include transform( translateX(0) );
+		}
+	}
+	.#{$animation-name} { @include opacity(0); @include animation( $animation-name 1s ); }
+	 
+	// FadeIn from left - Far distance
+	$animation-name: fadeFromLeft-2;
+	@include keyframes($animation-name) {
+		0%	 { 
+			opacity: 0;
+			@include transform( translateX(-8500px) );
+		}
+		100% { 
+			opacity: 1;
+			@include transform( translateX(0) );
+		}
+	}
+	.#{$animation-name} { @include opacity(0); @include animation( $animation-name 1s ); }
+	 
+	// FadeIn from left - So much far distance
+	$animation-name: fadeFromLeft-3;
+	@include keyframes($animation-name) {
+		0% 	 { 
+			opacity: 0;
+			@include transform( translateX(-15000px) );
+		}
+		100% { 
+			opacity: 1;
+			@include transform( translateX(0) );
+		}
+	}
+	.#{$animation-name} { @include opacity(0); @include animation( $animation-name 1s ); }
+
+}
+
+
+
+// ===========================
+// SHOW SLIDE DOWN
+// ===========================
+@if ( $animation-showSlideDown ) {
+	$animation-name: showSlideUp;
+	@include keyframes($animation-name) {
+		0% 	 { 
+			@include opacity(0);
+			@include transform( translateY(-10000px) );
+		}
+		85%, 90% { 
+			@include transform( translateY(10px) ); 
+		}
+		100% { 
+			@include transform( translateY(0) ); 
+		}
+	}	
+	.#{$animation-name} { @include animation( $animation-name 1s ); }
+}
+
+
+
+
+// ===========================
+// HIDE SLIDE UP
+// ===========================
+@if ( $animation-hideSlideUp ) {
+	$animation-name: hideSlideUp;
+	@include keyframes($animation-name) {
+		0% 	 { 
+			@include transform( translateY(0) ); 
+		}
+		5%, 10%	 { 
+			@include transform( translateY(10px) ); 
+		}
+		100% { @include transform( translateY(-10000px) ); }
+	}	
+	.#{$animation-name} { @include animation( $animation-name 1s ); }
+}
+
+
+
+// ============================
+// Delay Clases
+// ============================
+@if ( $animation-delay ) {
+	@for $i from 1 through $animation-delay-count {
+		.delay-#{$i} {
+			@include animation-delay( $i * 1s );
+		}
+	}	
+}

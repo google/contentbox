@@ -1,0 +1,214 @@
+<!--Copyright 2015 Google Inc. All Rights Reserved.
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License -->
+
+{% load staticfiles %}
+{% load url from future %}
+{% load i18n %}
+{% load solo_tags %}
+{% load profile_thumbnail %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% get_config 'config.SiteConfiguration' as config %}
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+		<title>{{ config.site_name }}{% block title %}{% endblock %}</title>
+		<meta name="description" content="{% block description %}{% endblock %}">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+        <!-- validate static path-->
+		<link rel="icon" type="image/png" href="{% static 'global/favicon.ico' %}">
+
+        <!-- validate static path-->
+		<link rel="stylesheet" href="{% static 'global/css/app.css' %}">
+
+		{% block css %}
+		{% endblock %}
+
+        <!-- validate static path - vendor-->
+		<script src="{% static '../modernizr-2.6.2-respond-1.1.0.min.js' %}"></script>
+
+		{% block preload_js %}
+		{% endblock %}
+
+	</head>
+
+	<body class="full {% block body_css_class %}{% endblock %} {% if user.is_authenticated %}logged{% else %}not-logged{% endif %}">
+
+		<header id="main-header" class="header">
+
+			<div class="logo c3-15 md-c3-15 mobile-c4-15 tablet-c2-15 cols collapse fh">
+				<a class="block item-link hide-mobile hide-md" href="{% url 'main:index' %}">
+					<!-- validate static path-->
+                    <img class="" src="{% static 'global/images/logo-content-box-wide.png' %}" alt="Content box logo" />
+				</a>
+				<a id="menu" class="block item-link hidden show-mobile show-md" href="{% url 'main:index' %}" onclick="$('body').toggleClass('open')">
+					<!-- validate static path-->
+                    <img class="float-left" src="{% static 'global/images/logo-content-box-menu.png' %}" alt="Content box logo" />
+				</a>
+			</div>
+
+			<div id="search" class="c7-15 md-c10-15 mobile-c9-15 tablet-c8-15 cols">
+				<form class="form" action="/search/" method="POST">
+					{{ search_form.box }}
+					<button type="button" class="hide-mobile button-search option-button">
+						<i class="ficon ficon-search fa-search"></i>
+					</button>
+					<button type="button" class="button-advanced-search option-button" onclick="$('#advanced-search').slideToggle();">
+						<i class="ficon ficon-advanced-search fa-caret-down"></i>
+					</button>
+					<div id="advanced-search" class="c15-15 cols">
+						<h4 class="small title">{% trans "Advanced Search" %}</h4>
+						<div class="row">
+							<div class="two-cols">
+								<h6 class="small title">{% trans "Language" %}</h6>
+								<select id="id_language" class="language" onchange="advancedSearchSelect()">
+									<option value="">{% trans "All" %}</option>
+									{% for choice in search_form.language %}
+										<option value="{{ choice.choice_value }}">{{ choice.choice_label }}</option>
+									{% endfor %}
+								</select>
+							</div>
+							<div class="two-cols">
+								<h6 class="small title">{% trans "Content Type" %}</h6>
+								<select id="id_content_type" class="content-type" onchange="advancedSearchSelect()">
+									<option value="">{% trans "All" %}</option>
+									{% for choice in search_form.content_type %}
+										<option value="{{ choice.choice_value }}">{{ choice.choice_label }}</option>
+									{% endfor %}
+								</select>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+
+			<div class="handheld notifications hidden show-mobile show-md md-c2-15 mobile-c2-15 tablet-c1-15 cols">
+				{% include "main/notification.html" %}
+			</div>
+
+			<div id="options" class="cols tablet-c6-15">
+				<nav id="main-nav" class="c15-15 cols">
+					<ul class="horz list">
+						<!-- <li class="item lang-selector"> -->
+							{# include "main/language_select.html" #}
+						<!-- </li> -->
+						{% if user.is_authenticated %}
+							<li id="user-data" class="item">
+								<div class="clearfix item-link">
+									<div class="profile-container">
+										<div class="profile-email" title="+{{ user.first_name }}">+{{ user.first_name }}</div>
+										<a class="profile-logout fontawesome-remove-sign" href="{% url 'auth_logout_next' %}">{% trans "Log out" %}</a>
+									</div>
+									<img class="profile-image" src="{{ user|profile_thumbnail }}" alt="{% trans 'Profile image' %}" />
+								</div>
+							</li>
+							{% if not hide_my_boxes_link %}
+								<li class="item option-button">
+									<a class="item-link" href="{% url 'main:wall' %}">{% trans "My Boxes" %}</a>
+								</li>
+							{% endif %}
+							{% if not hide_boxes_link %}
+								<li class="item option-button">
+									<a class="item-link" href="{% url 'main:index' %}">{% trans "All boxes" %}</a>
+								</li>
+							{% endif %}
+							<li class="notifications item hide-mobile hide-md">
+								{% include "main/notification.html" %}
+							</li>
+						{% else %}
+							<li class="item hide-mobile hide-md show-tablet">
+								<a class="button red medium" href="{% url 'adminoauthlogin:login' %}">{% trans "Log in" %}</a>
+							</li>
+						{% endif %}
+						{% if user.is_authenticated %}
+							<li class="item">
+								<a class="logout hidden show-mobile hide-md white-text" href="{% url 'auth_logout_next' %}">{% trans "Log out" %}</a>
+							</li>
+						{% endif %}
+					</ul>
+				</nav>
+			</div>
+
+		</header>
+
+
+		<div class="container full">
+
+			{% if not user.is_authenticated %}
+				<div id="mobile-login" class="show-mobile hidden">
+					<a class="button red medium" href="{% url 'adminoauthlogin:login' %}">{% trans "Log in" %}</a>
+				</div>
+			{% endif %}
+
+			{% block content %}
+			{% endblock %}
+
+			<div id="global-footer" class="stats tablet-c15-15">
+				{% include "main/footer.html" %}
+			</div>
+
+		</div>
+
+		{{ config.analytics_code|safe }}
+
+        <!-- validate static path - vendor-->
+		<script src="{% static '../jquery-1.11.0.min.js' %}"></script>
+		{{ search_form.media }}
+        <!-- validate static path - vendor-->
+		<script type="text/javascript" src="{% static 'django_ajax/js/jquery.ajax.min.js' %}"></script>
+
+		{% block js %}
+		{% endblock %}
+
+		<script type="text/javascript">
+			function notification( icon ) {
+				var panel = icon.siblings( '.notification-panel' );
+				icon.find('.ficon').toggleClass('fa-bell-o fa-bell');
+				console.log(panel[0]);
+				if ( !panel.is(':visible') ) {
+					panel.slideDown();
+				} else {
+					panel.slideUp();
+				}
+			}
+			function close_notification( notification ) {
+				notification.fadeOut(function(){
+					if ($('.notification-panel .noti-item:visible').length == 0) {
+						$('.notification-panel .empty-notification').show();
+					}
+				});
+			}
+
+			function refresh_gif( img ) {
+				gif = img.attr('src');
+				img.removeAttr('src');
+				img.attr('src', gif);
+			}
+
+			function advancedSearchSelect() {
+				$('#search #id_box').flushCache();
+			}
+
+		</script>
+
+	</body>
+</html>

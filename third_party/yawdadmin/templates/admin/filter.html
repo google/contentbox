@@ -1,0 +1,6 @@
+{% load i18n yawdadmin_filters %}<li class="nav-header">{% filter utfupper %}{% blocktrans with title as filter_title %}{{ filter_title }}{% endblocktrans %}{% endfilter %}</li>
+							<li>
+								<select class="select2">{% for choice in choices %}
+									<option{% if choice.selected %} selected="selected"{% endif %} data-href="{{ choice.query_string|iriencode }}">{{ choice.display }}</option>{% endfor %}
+								</select>
+							</li>

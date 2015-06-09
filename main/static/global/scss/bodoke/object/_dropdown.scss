@@ -1,0 +1,108 @@
+// _dropdown.scss
+
+// Dropdown sintax
+// - Soporta: image icon / font-icons
+//
+// 	<div class="dropdown c12-12 cols" onclick="$(this).toggleClass('open')">
+// 		<div class="handler">
+//	 		{% trans "Texto que indique para que sirve" %}
+// 			<i class="ficon fa-caret-down"></i>
+// 		</div>
+// 		<ul id="category-list" class="vertical list">
+//			<li class="item active">
+//			<li class="item">
+// 		</ul>
+//	</div>
+
+
+$dropdown-height:		2.4em;
+$dropdown-bg:			$black_90;
+$dropdown-handler-bg:	$google-gray;
+$dropdown-shadow:		black(0.6);
+
+.dropdown {
+	position: relative;
+	min-width: 150px;
+	margin: 0;
+	padding: 0;
+	cursor: pointer;
+	color: $text-color;
+	background-color: $dropdown-bg;
+	@include box-shadow( 0 1px 3px 0 $dropdown-shadow );
+	.handler, li, > div, .item {
+		line-height: $dropdown-height;
+		padding-left: $col-offset;
+		padding-right: $col-offset;
+		background-color: $google-gray;
+	}
+	li, .item {
+		&:hover {
+			background-color: white(1);
+			@include text-shadow( 0 1px 0 white(0.8) );
+		}
+	}
+	.handler {
+		position: relative;
+		background-color: $dropdown-handler-bg;
+		@if lightness($dropdown-handler-bg) > lightness(#aaa) {
+			color: $text-color;
+			@include text-shadow( 0 1px 0 white(0.7) );
+		} @else {
+			color: $white;
+			@include text-shadow( 0 1px 0 black(0.7) );
+		}
+		z-index: 2;
+		.icon, .ficon {
+			position: absolute;
+			@if lightness($dropdown-handler-bg) > lightness(#aaa) {
+				color: $text-color;
+				@include text-shadow( 0 1px 0 white(0.7) );
+			} @else {
+				color: $white;
+				@include text-shadow( 0 1px 0 black(0.7) );
+			}
+		}
+		.icon {
+			$x: floor( ( px($dropdown-height) - $icon-size ) / 2 ) - 1px;
+			$y: floor( ( px($dropdown-height) - $icon-size ) / 2 ) - 1px;
+			right: $x;
+			top: $y;
+		}
+		.ficon {
+			font-size: 1em;
+			right: 0;
+			line-height: $dropdown-height;
+			padding-left: $col-offset;
+			padding-right: $col-offset;
+		}
+	}
+	&:hover {
+	}
+	// List Items
+	&.open {
+		.list {
+			display: block;
+			opacity: 1;
+			visibility: visible;
+			@include transform( translateY( 0 ) );
+		}
+	}
+	.list {
+		position: absolute;
+		opacity: 0;
+		visibility: hidden;
+		display: none;
+		@include transition( all 0.25s ease );
+		@include transform( translateY( -3px ) );
+
+		width: 100%;
+		border-top: 1px solid $dropdown-shadow;
+		@include box-shadow( 0 3px 3px 0 $dropdown-shadow );
+		z-index: 1;
+		a {
+			display: block;
+			color: $text-color;
+			@include text-shadow( 0 1px 0 white(0.8) );
+		}
+	}
+}

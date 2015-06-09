@@ -1,0 +1,10 @@
+URL: https://bitbucket.org/wkornewald/django-filetransfers/
+Version: 1
+License:
+License File: LICENSE
+
+Description:
+Helper for writing reusable Django apps that handle uploads and downloads
+
+Local Modifications:
+No Modifications.

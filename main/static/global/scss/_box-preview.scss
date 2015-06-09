@@ -1,0 +1,114 @@
+// ==========================
+// BOX PREVIEW
+// ==========================
+$box-preview-padding: 			0;
+$box-preview-offset: 			100%;
+$box-preview-size:				30px;
+$box-preview-close-size:		30px;
+
+.box-preview {
+	display: none;
+	position: absolute;
+	top: 0;
+	// left: $box-preview-close-size - $box-preview-padding;
+	left: $box-preview-padding;
+	width: 250%;
+	// max-height: $box-thumb-height * 2;
+	padding: $box-preview-padding;
+	padding-left: 0;
+	&.from-right {
+		left: auto;
+		right: $box-preview-close-size;
+		padding-left: $box-preview-padding;
+		padding-right: 0;
+	}
+	&.from-bottom {
+		top: auto;
+		bottom: 0;
+	}
+}
+
+.box-preview {
+	.inner-preview {
+		width: 100%;
+		height: 100%;
+		background-color: white;
+		@include box-shadow( 0 0px 3px 3px black(0.2) );
+	}
+	.ficon-close {
+		position: absolute;
+		top: 0;
+		right: -$box-preview-close-size;
+		left: auto;
+		color: $white;
+		text-align: center;
+		width: $box-preview-size;
+		height: $box-preview-size;
+		line-height: $box-preview-size;
+		font-size: 1.3em;
+		background-color: black(0.8);
+		cursor: pointer;
+		@include opacity(0);
+		@include transition( opacity $transition-speed ease );
+		@include animation( fadeInFromLeftToRight 1s );		
+	}
+	// &.from-left {
+	// 	.ficon-close {
+	// 		right: auto;
+	// 		left: -$box-preview-close-size + $box-preview-padding;
+	// 		@include animation( fadeInFromLeftToRight 1s );		
+	// 	}
+	// }
+	.preview-data {
+		// height: (1.4em * 3) + ($col-offset * 2);
+		@include clear();
+		padding-top: $col-offset;
+		padding-bottom: $col-offset;
+	}
+	.title {
+		width: 75%;
+		float: left;
+		margin-bottom: 0;
+		padding: 0 ($col-offset / 3);
+		font-size: 1.6em;
+		@include max-lines(2, 1.4em, true);
+		@include text-shadow( 0 1px 0 $gray-border );
+	}
+	.button-start {
+		margin-right: $col-offset;
+		position: relative;
+		line-height: 2em;
+	}
+
+	.box-video		{ z-index: 20; }
+	.ficon-close 	{ z-index: 10; }
+}
+
+
+// ==========================
+// Z-INDEX
+// ==========================
+
+.inner-box 		{ z-index: 10; }
+.box-preview	{ z-index: 50; }
+
+
+
+// ==========================
+// MEDIA QUERIES
+// ==========================
+@mixin disable-box-preview() {
+	.box-preview {
+		display: none!important;
+	}
+}
+
+// Mobile
+@mixin media-mobile-box-preview() {
+	@include disable-box-preview();	
+}
+
+// 800
+@mixin media-800-box-preview() {
+	@include disable-box-preview();	
+}

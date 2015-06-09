@@ -1,0 +1,69 @@
+// _bodoke-example.scss
+
+body.example {
+	padding-bottom: $col-offset * 3;
+}
+
+.example-header {
+	padding-top: 40px;
+	padding-bottom: 40px;
+	margin-bottom: 20px;
+	background-color: $color-1;
+	@include text-shadow( 0 1px 0 darken( $color-1, 25%) );
+	h1 {
+		color: white;
+		line-height: 1;
+		text-indent: -4px;
+		font-size: 3.7em;
+		font-weight: 500;
+		font-family: $bodoke-font $open-sans;
+	}
+	small {
+		color: white;
+	}
+}
+.example-content {
+	margin-top: 1em;
+	margin-bottom: $col-offset * 5;
+	padding-left: $col-offset;
+	padding-right: $col-offset;
+	padding-bottom: $col-offset;
+	border-bottom: 1px solid hsl(0, 0, 92%);
+
+}
+.mobile {
+	&.col, &.cols, &.column, &.columns {
+		background-color: rgba($color-1, 1);
+	}
+}
+
+.row.example {
+	border-top: 1px solid hsl(0, 0, 70%);		
+	border-bottom: 1px solid hsl(0, 0, 70%);
+	.col, .cols, .column, .columns {
+		padding-top: 8px;
+		padding-bottom: 8px;
+		background: hsl(0, 0, 95%);
+		border-left: 1px solid hsl(0, 0, 70%);
+		border-right: 1px solid hsl(0, 0, 70%);
+		font-weight: 600;
+		color: hsl(0, 0, 35%);
+		@include truncate-line();
+		.col, .cols, .column, .columns {
+			padding-top: 0;
+			padding-bottom: 0;
+			border: none;
+		}
+		// border-right: 0;
+		&:last-child {
+			// border-right: 1px solid hsl(0, 0, 70%);
+		}
+	}
+}
+
+// Titles
+h1, h2, h3, h4, h5, h6 {
+	&[id] {
+
+	}
+}

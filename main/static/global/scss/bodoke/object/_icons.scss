@@ -1,0 +1,111 @@
+// _icons.scss
+
+
+// ==================
+// IMAGE ICONS
+// ==================
+$grid-size:	24px;
+$x-grid: 72px / $grid-size;
+$y-grid: 120px / $grid-size;
+
+.icon {
+	display: block;
+	background-position: 0 0;
+	background-repeat: no-repeat;
+}
+
+@mixin flag-icons( $icon-size, $class-prefix:'' ) {
+	$icon-class: 'icon';
+	@if $class-prefix != '' {
+		$icon-class: '#{$class-prefix}-icon'
+	}
+
+	// .icon-class-here	
+	.#{$icon-class} {
+		width: $icon-size;
+		height: $icon-size;
+		background-size: ($icon-size * $x-grid) ($icon-size * $y-grid);
+		// background-size: ($icon-size * 22) ($icon-size * 16);
+
+		$usa:		('usa', 'eeuu', 'ee-uu', 'eng', 'estados-unidos', 'silicon-valley', 'sil-valley');
+		$spain:		('spa', 'espana', 'españa', 'spain');
+		$brasil: 	('bra', 'brasil', 'brazil', 'sao-paulo', 'san-pablo', 'rio-de-janeiro');
+		$argentina: ('arg', 'argentina', 'buenos-aires', 'bs-as');
+		$colombia:	('col', 'colombia', 'bogota');
+		$mexico:	('mex', 'mexico', 'mexico-df');
+
+		&.flag {
+			@each $place in $spain {
+				&.#{$place}	{ background-position: 0 0; }
+			}
+			@each $place in $usa {
+				&.#{$place}	{ background-position: 0 (-$icon-size); }
+			}
+			@each $place in $brasil {
+				&.#{$place}	{ background-position: 0 (-$icon-size * 2); }
+			}
+			@each $place in $argentina {
+				&.#{$place}	{ background-position: 0 (-$icon-size * 3); }
+			}
+			@each $place in $colombia {
+				&.#{$place}	{ background-position: 0 (-$icon-size * 4); }
+			}
+			@each $place in $mexico {
+				&.#{$place}	{ background-position: (-$icon-size) 0; }
+			}
+			// &.big {
+			// 	width: $icon-size * 3;
+			// 	height: $icon-size * 2;
+			// 	@each $place in $argentina {
+			// 		&.#{$place}	{ background-position: (-$icon-size * 7) 0; }
+			// 	}
+			// 	@each $place in $brasil {
+			// 		&.#{$place}	{ background-position: (-$icon-size * 10) 0; }
+			// 	}
+			// 	@each $place in $colombia {
+			// 		&.#{$place}	{ background-position: (-$icon-size * 10) (-$icon-size * 4); }
+			// 	}
+			// 	@each $place in $mexico {
+			// 		&.#{$place}	{ background-position: (-$icon-size * 7) (-$icon-size * 2); }
+			// 	}
+			// }
+		}
+	}
+}
+// Medium size icons
+@include flag-icons( $md-icon-size );
+
+
+
+// ==================
+// FONT ICONS
+// ==================
+.ficon {
+	font-size: em(24px);
+	&[disabled], &[disabled="disabled"], &.disabled {
+		cursor: default;
+		@include opacity(0.6);
+	}
+	&.small { font-size: em(16px); }
+	&.medium { font-size: em(32px); }
+	&.large { font-size: em(44px); }
+
+	.rounded {
+		@include border-radius( 50% );
+		padding: 3px;
+		.medium { padding: 5px; }
+		.large { padding: 8px; }
+	}
+}
+
+
+@include netbook() {
+	/* Netbook size icons - Hasta 600 de alto  */
+	// @include generate_icons( $sm-icon-size, 'sm' );
+	
+	// Exception of medium size icons inside @media query
+	// @include generate_icons( $md-icon-size, 'md' );
+
+	// Large size icons inside @media query
+	// @include generate_icons( $lg-icon-size, 'lg' );	
+}

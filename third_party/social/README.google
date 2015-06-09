@@ -1,0 +1,12 @@
+URL: https://github.com/omab/django-social-auth
+Version: 0.7.28
+License: BSD License
+License File: LICENSE
+
+Description:
+Django Social Auth is an easy way to setup social
+authentication/authorization
+mechanism for Django projects.
+
+Local Modifications:
+No Modifications.

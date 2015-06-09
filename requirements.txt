@@ -1,0 +1,30 @@
+# This requirements file lists all third-party dependencies for this project.
+#
+# Run pip install -r requirements.txt -t third_party/
+#
+google-api-python-client==1.4.0
+django-dbindexer==1.6.1
+Django==1.8.1
+djangoajax==2.2.15
+djangotoolbox==1.6.2
+django-modeltranslation==0.9
+httplib2==0.9.1
+oauth2client==1.4.7
+oauthlib==0.7.2
+python-openid==2.2.5
+permission-backend-nonrel==0.2
+requests-oauthlib==0.5.0
+python-slugify==1.0.2
+django-social-auth==0.7.28
+django-solo==1.1.0
+Unidecode==0.04.17
+uritemplate==0.6
+django-uuslug==1.0.5
+yawd-admin==0.7.0
+requests==2.7.0
+six==1.9.0
+hg+https://bitbucket.org/twanschik/nonrel-search/src
+hg+https://bitbucket.org/twanschik/django-autoload/src
+hg+https://bitbucket.org/wkornewald/django-filetransfers/src
+git+https://github.com/summernote/django-summernote.git
+git+https://github.com/django-nonrel/djangoappengine.git@devappserver2

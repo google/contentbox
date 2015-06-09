@@ -1,0 +1,42 @@
+/* 
+* _1024.scss
+* Resoluciones hasta 1024px
+*/
+
+// Aca hay que incluir como un @mixin todas las reglas
+// que deban funcionar en resoluciones menores a 1024px de ancho
+// Ej.: @include media-1024-footer;
+
+// ======================================================================
+
+// @include media-1024-footer();
+
+// Developing
+
+// Header
+@include media-1024-header();
+@include media-1024-search();
+
+
+// Section - Index
+// ===============================
+// Boxes
+@include media-1024-box();
+@include media-box-calltoaction-visible();
+// Content
+@include media-1024-content();
+// Side Nav
+@include media-1024-sidenav();
+// @include media-1024-sidenav-main();
+
+
+// Section - Detail
+// ===============================
+@include media-1024-detail();
+@include media-1024-sidenav-detail();
+
+
+// Section - Wall
+// ===============================
+// @include media-1024_tablet-wall();
+@include media-1024-wall();

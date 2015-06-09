@@ -1,0 +1,146 @@
+// _detail.scss
+
+
+// ========================
+// SIDE NAV DEL DETALLE
+// ========================
+#detail-side-nav {
+	padding-top: $small-header-height;
+	padding-left: $col-offset;
+	padding-right: $col-offset;
+	.description {
+		margin-bottom: $col-offset * 2;
+		text-indent: 0;
+		padding-left: $col-offset * 1.5;
+		padding-right: $col-offset * 1.5;
+		.title, p {
+			padding-left: 0;
+			padding-right: 0;
+		}
+		p {
+			font-size: 0.9em;
+			line-height: 1.6em;
+			font-weight: 300;
+			text-align: justify;
+		}
+	}
+	.small.title {
+		border-bottom: 1px solid $gray-border;
+		padding-bottom: $col-offset / 3;
+		margin-bottom: $col-offset / 2;
+		margin-top: $col-offset / 2;
+	}
+	.call-to-action {
+		border-top: 1px solid $gray-border;
+		padding-top: $col-offset / 2;
+		padding-left: $col-offset * 1.5;
+		padding-right: $col-offset * 1.5;
+	}
+}
+
+
+
+
+// ========================
+// REDES SOCIALES LINKEADAS
+// ========================
+#detail-side-nav {
+	.social-button {
+		width: 100%;
+		// padding-top: $col-offset / 2;
+		// padding-bottom: $col-offset / 2;
+		margin-bottom: $col-offset / 2;
+		text-align: left;
+		// background-color: $color-2;
+		color: $white;
+		&.github {}
+		&.drive {}
+		.ficon, .text {
+			display: block;
+			float: left;
+			color: inherit;
+		}
+		.ficon {
+			line-height: 38px;
+			margin-right: $col-offset / 3;
+		}
+		.text {
+			font-size: 1.1em;
+			line-height: 42px;
+			@include text-shadow( 0 1px 0 black(0.3) );
+		}
+	}
+}
+
+
+
+
+// ==========================
+// MEDIA QUERIES
+// ==========================
+// Mobile
+@mixin media-mobile-sidenav-detail {
+	#detail-side-nav {
+		padding-top: 0;
+		.description {
+			padding-left: $col-offset;
+			padding-right: $col-offset;				
+		}
+	}
+}
+
+// 768
+@mixin media-768-sidenav-detail {
+	#detail-side-nav {
+		padding-top: 0;
+		.button-area {
+			width: 50%;
+		}
+	}
+	.show-filters #detail-side-nav {
+		padding-bottom: $col-offset;
+	}
+}
+
+// 1024
+@mixin media-1024-sidenav-detail() {
+	#detail-side-nav {
+		width: col-width(3,15);
+	}
+}
+
+// TABLET 1024
+@mixin media-1024_tablet-sidenav-detail() {
+	#detail-side-nav {
+		width: col-width(3,15);
+	}
+	.header-title-detail {
+		display: none!important;
+	}
+	#detail-side-nav .header-title-detail {
+		display: block!important;
+	}
+}
+
+// 1280
+@mixin media-1280-detail-back-button {
+	#detail-side-nav {
+		font-size: 12px;		
+		.header-title-detail {
+			padding-right: 0;
+			.title, .summary {
+				padding-left: $col-offset;
+				padding-right: $col-offset;
+			}
+		}
+		.back-button {
+			font-size: 1.5em;
+			text-align: center;
+			width: 100%;
+			float: none;
+			margin-bottom: $col-offset / 2;
+			padding-left: 0;
+			padding-right: 0;
+		}
+	}
+}

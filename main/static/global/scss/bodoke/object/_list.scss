@@ -1,0 +1,43 @@
+// _list.scss
+
+@mixin list() {
+	@include clear();
+	list-style: none;
+}
+
+@mixin bdk-list() {
+	.list {
+		@include list();
+		&, &.vertical, &.vert {
+			margin: 0;
+			padding-left: 0;
+			&.container {
+				margin-left: auto;
+				margin-right: auto;
+			}
+			.item {
+				margin: 0;
+				display: block;
+				float: none;
+			}
+		}
+		&.horizontal, &.horz {
+			.item { 
+				float: left; 
+			}
+			&.centered, &.inline {
+				text-align: center;
+				.item {
+					float: none;
+					display: inline-block;				
+				}
+			}
+		}
+		.item {
+			@include clear();
+		}
+	}
+}
+
+// Crea las listas
+@include bdk-list();

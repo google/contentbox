@@ -1,0 +1,51 @@
+// _tooltip.scss
+
+@mixin tooltip( $color: #2362ff, $width: auto, $x: 25%, $y: 90% ) {
+	$tooltip-bg:	rgba( $color, 0.9 );
+	.tooltip {
+		visibility: hidden;
+		position: absolute!important;
+		left: $x;
+		bottom: $y;
+		@if $width != auto {
+			width: $width;
+			min-width: auto;
+		} @else {
+			width: auto;
+			min-width: 200%;			
+		}
+		padding: ($col-offset / 2) $col-offset;
+		color: #FFF;
+		font-size: 12px;
+		@include opacity(0);
+		@include text-shadow( 0 1px 0 black(0.7) );
+		@include border-radius( 5px );
+		@include transition( opacity $transition-time ease );
+		@include arrow( $tooltip-bg, 10px, 'bottom', 12.5% );
+		@include background( $tooltip-bg );
+		z-index: 100;
+		&.last {
+			left: auto;
+			right: $x;
+			@include arrow( $tooltip-bg, 10px, 'bottom', 90% );
+		}
+		.name {
+			font-size: 1.2em;
+			margin-bottom: 5px;
+		}
+		.description {
+			margin: 0;
+			font-weight: 300;
+		}
+	}
+	@include netbook() {
+		.tooltip {
+			bottom: 95%;
+			@include arrow( $tooltip-bg, 6px, 'bottom', 10% );
+			&.last {
+				@include arrow( $tooltip-bg, 6px, 'bottom', 90% );
+			}			
+		}
+	}
+}
+

@@ -1,0 +1,204 @@
+<!--Copyright 2015 Google Inc. All Rights Reserved.
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.-->
+
+{% extends 'base.html' %}
+
+{% load i18n %}
+{% load staticfiles %}
+{% load url from future %}
+{% load youtube_embed %}
+{% load youtube_thumbnail %}
+
+{% block title %} - {{ box.title }}{% endblock %}
+
+{% block body_css_class %}box-detail{% endblock %}
+
+{% block content %}
+
+	<div id="content" class="row">
+
+		{% if not box.published %}
+			<div id="not-published" class="c15-15 cols offset-3-15">
+				<p>{% trans "Box not published yet. The admin must approve it." %}</p>
+			</div>
+		{% endif %}
+
+		<div class="header-title-detail show-tablet show-mobile hidden offset-3-15">
+			<div class="table-block">
+				<a class="back-button c2-15 tablet-c2-15 mobile-c3-15 cols" href="{% url 'main:index' %}">
+					<i class="ficon fa-angle-left"></i>
+					<span class="hidden show-inline-mobile white-text">{% trans "Back" %}</span>
+				</a>
+				<h1 class="title c13-15 tablet-c13-15 mobile-c12-15 cols" title="{{ box.title }}">{{ box.title }}</h1>
+			</div>
+		</div>
+
+		<div id="detail-side-nav" class="side-nav c3-15 md-c15-15 tablet-c15-15 cols">
+
+			<div class="scrolleable-area row">
+				<div class="header-title-detail hide-tablet hide-mobile">
+					<div class="table-block">
+						<a class="back-button c2-15 tablet-c2-15 cols" href="{% url 'main:index' %}">
+							<i class="ficon fa-angle-left"></i>
+							<span class="hidden show-inline-mobile white-text">{% trans "Back" %}</span>
+						</a>
+						<h1 class="title c13-15 tablet-c13-15 cols" title="{{ box.title }}">{{ box.title }}</h1>
+					</div>
+				</div>
+
+				<div class="description c15-15 cols">
+					<h3 class="small title">{% trans "Synopsis" %}</h3>
+					<p>{{ box.description }}</p>
+				</div>
+
+				{% if box.github_url or box.drive_folder_url %}
+					{% if box.github_url %}
+						<div class="button-area c15-15 cols">
+							<a class="button blue social-button github" href="{{ box.github_url }}" title="{% trans "View sourcecode in Github" %}" target="_blank">
+								<i class="ficon medium fa-github-alt"></i>
+								<span class="text">{% trans "View sourcecode" %}</span>
+							</a>
+						</div>
+					{% endif %}
+					{% if box.drive_folder_url %}
+						<div class="button-area c15-15 cols">
+							<a class="button blue social-button drive" href="{{ box.drive_folder_url }}" title="{% trans "View files in drive" %}" target="_blank">
+								<i class="ficon medium fa-file-o"></i>
+								<span class="text">{% trans "View files in drive" %}</span>
+							</a>
+						</div>
+						{% if files %}
+							<div id="box-files">
+								<div class="c15-15 cols">
+									<h3 class="small title">{% trans "Files" %}</h3>
+								</div>
+								<table class="table-gray">
+									<tbody>
+										{% for file in files %}
+											<tr>
+												<td width="15%"><img class="file-icon a-center" src="{{ file.iconLink }}"></td>
+												<td width="85%"><a class="" href="{{ file.alternateLink }}" target="_blank"><strong>{{ file.title }}</strong></a></td>
+											</tr>
+										{% endfor %}
+									</tbody>
+								</table>
+							</div>
+						{% endif %}
+					{% endif %}
+				{% endif %}
+
+				<div class="call-to-action c15-15 cols hide-tablet hide-mobile">
+					<small><a href="#" class="red-text" onclick="leave_box('{{ box.id }}')">{% trans "Leave Box" %}</a></small>
+				</div>
+
+			</div>
+		</div>
+
+		<!--
+		{% include "main/toggle-side-nav.html" %}
+		-->
+
+		<div id="detail" class="c12-15 offset-3-15 md-c15-15 tablet-c15-15 cols">
+			<div id="bdk-slider" class="row blueimp-gallery blueimp-gallery-controls blueimp-gallery-carousel">
+				<div class="slides"></div>
+				<h3 class="title"></h3>
+				<div class="prev slider-arrow slider-left"><i class="ficon arrow fa-angle-left"></i></div>
+				<div class="next slider-arrow slider-right"><i class="ficon arrow fa-angle-right"></i></div>
+				<ol class="indicator"></ol>
+			</div>
+
+			<div id="instructor" class="row">
+				<div class="info c15-15 cols">
+					<aside class="instructor-profile">
+						<img class="pic" src="{{ box.instructor.image.url }}" />
+						<h4 class="name title">{{ box.instructor.name }}</h4>
+						<div class="summary">{{ box.instructor.get_affiliation_display }}</div>
+					</aside>
+					<article class="instructor-content c10-15 cols">
+						<header class="tags hide-tablet">
+							{% for tag in box_tags %}
+								<div class="tag">
+									<img src="{{ tag.icon.url }}" class="tag-img" title="{{ tag.title }}" alt="{{ tag.title }}">
+									<div class="tag-title">{{ tag.title }}</div>
+								</div>
+							{% endfor %}
+						</header>
+						<p>{{ box.instructor.description }}</p>
+						<ul class="instructor-links horz list">
+							{% for link in box.links.all %}
+								<li class="item"><a href="{{ link.url }}" target="_blank">{{ link.title }}</a></li>
+							{% endfor %}
+						</ul>
+					</article>
+				</div>
+
+				<div class="call-to-action c15-15 center-text cols hidden show-mobile show-tablet">
+					<div class="row row-two">
+						<a href="#" class="red-text button inline-block clear" onclick="leave_box('{{ box.id }}')">{% trans "Leave Box" %}</a>
+					</div>
+				</div>
+			</div>
+
+			<!--
+			<div class="stats hide-tablet hide-mobile">
+				{% include "main/footer.html" %}
+			</div>
+			-->
+		</div>
+
+	</div>
+
+{% endblock %}
+
+
+{% block js %}
+	<script src="{% static 'vendor/blueimp/blueimp-helper.js' %}"></script>
+	<script src="{% static 'vendor/blueimp/blueimp-gallery.js' %}"></script>
+	<script src="{% static 'vendor/blueimp/blueimp-gallery-fullscreen.js' %}"></script>
+	<script src="{% static 'vendor/blueimp/blueimp-gallery-indicator.js' %}"></script>
+	<script src="{% static 'vendor/blueimp/blueimp-gallery-video.js' %}"></script>
+	<script src="{% static 'vendor/blueimp/blueimp-gallery-youtube.js' %}"></script>
+	<script>
+		$(function () {
+			blueimp.Gallery([
+				{% for unit in box.units.all %}
+					{
+						title: '{{ unit.title }}',
+						type: 'text/html',
+						youtube: '{{ unit.video_link|youtube_get_id }}',
+						thumbnail: '{{ unit.video_link|youtube_thumbnail_url }}'
+					}{% if not forloop.last %},{% endif %}
+				{% endfor %}
+			], {
+				container: '#bdk-slider',
+				carousel: true,
+				startSlideshow: false
+			});
+		});
+		function leave_box(id) {
+            ajaxPost(
+                '/box/leave/',
+                {'box_id': id, 'redirect': true},
+                function(response) {
+
+                },
+                {
+                    'onError': function(response){
+                        alert('There was an error. Please try again.');
+                    }
+                }
+            );
+        }
+	</script>
+{% endblock %}

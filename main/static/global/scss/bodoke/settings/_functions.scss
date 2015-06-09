@@ -1,0 +1,105 @@
+// _functions.scss
+
+// ======================
+// Functions
+// ======================
+@function black( $opacity:1, $output:'rgba' ) {
+	@if $opacity != 1 {
+		@return rgba(0, 0, 0, $opacity);
+	} @else {
+		@if $output == 'hex' {
+			@return #000;			
+		} @elseif $output == 'hls' {
+			@return hls(0, 0, 0);
+		} @elseif $output == 'rgb' {
+			@return rgb(0, 0, 0);
+		} @else {
+			@return rgba(0, 0, 0, 1);			
+		}
+	}
+}
+@function white( $opacity:1, $output: 'rgba' ) {
+	@if $opacity != 1 {
+		@return rgba(255, 255, 255, $opacity);		
+	} @else {
+		@if $output == 'hex' {
+			@return #FFF;			
+		} @elseif $output == 'hls' {
+			@return hls(0, 100, 0);
+		} @elseif $output == 'rgb' {
+			@return rgb(255, 255, 255);
+		} @else {
+			@return rgba(255, 255, 255, 1);
+		}
+		@return #FFF;
+	}
+}
+
+// 0.0.5
+// ====================
+@function gray( $value, $alpha:1 ) {
+	@if ($alpha == '') {
+		@return rgb( $value, $value, $value );
+	} @else {
+		@return rgba( $value, $value, $value, $alpha );		
+	}
+}
+
+@function img( $path ) {
+	@return url( $IMGPATH + $path);
+}
+@function icon( $path ) {
+	@return url( $IMGPATH + 'icon/' + $path);
+}
+@function placeholder( $path ) {
+	@return url( $IMGPATH + 'placeholder/' + $path);
+}
+@function input( $path ) {
+	@return url( $IMGPATH + 'input/' + $path);
+}
+@function bg( $path ) {
+	@return url( $IMGPATH + 'background/' + $path);
+}
+
+// Strip Number Unit
+@function strip-units($number) {
+	@return $number / ($number * 0 + 1);
+}
+
+// $base-em:	16px;
+@function em($target, $round: false, $context: $base-em) {
+	@if $target == 0 { 
+		@return 0;
+	}
+	$number: strip-units( $target );
+	$number: ($number * $context) + 0px;
+	@if $round == 'round' {
+		$number: round($number);
+	} @elseif $round == 'floor' {
+		$number: floor($number);
+	} @elseif $round == 'ceil' {
+		$number: ceil($number);
+	}
+	@return $target / $context + 0em;
+}
+@function px($target, $round: false, $context: $base-em){
+	$number: strip-units( $target );
+	$number: ($number * $context) + 0px;
+	@if $round == 'round' {
+		$number: round($number);
+	} @elseif $round == 'floor' {
+		$number: floor($number);
+	} @elseif $round == 'ceil' {
+		$number: ceil($number);
+	}
+	@return $number;
+}
+
+
+// 0.0.6
+// percent()
+// Calcula el porcentaje indicado del numero indicado
+// ====================
+@function percent( $value, $percent ) {
+	@return ($value * $percent) / 100;
+}

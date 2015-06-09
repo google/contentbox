@@ -1,0 +1,115 @@
+// _table.scss
+
+$row-size:	3em;
+
+// =================
+// TABLE
+// =================
+table {
+	thead {
+		th {
+			border: none;
+			text-transform: uppercase;
+			font-size: 1.2em;
+			font-weight: 300;
+			line-height: 2.5em;
+			padding: 0;
+			padding-left: $offset;
+			padding-right: $offset;
+		}
+	}
+	tbody {
+	}
+	tr {
+		@include transition( background-color 0.25s ease );
+		// border-right-width: 1px;
+		// border-right-style: solid;
+		// border-left-width: 1px;
+		// border-left-style: solid;
+		// border-bottom-width: 1px;
+		// border-bottom-style: solid;
+		border:none;
+		&:hover {  }
+	}
+	td {
+		position: relative;
+		border: none;
+		// border-right-width: 1px;
+		// border-right-style: solid;
+		font-size: 1em;
+		font-weight: 300;
+		line-height: $row-size;
+		padding: 0;
+		padding-left: $offset;
+		padding-right: $offset;
+		&:last-child {
+			border-right: none;
+		}
+		&.title {
+			font-weight: 500px;
+			font-size: 1em;
+			line-height: 3em;
+		}
+	}
+}
+
+
+// =================
+// BLUE TABLE
+// =================
+@mixin table-color( $color-name, $color ) {
+	$table-bg: 		saturate( lighten( $color, 10% ), 10% );
+	$border-color:	darken( $table-bg, 10% );
+	&.table-#{$color-name} {
+		thead {
+			th {
+				// @include gradient( darken( $table-bg, 20%), darken( $table-bg, 30% ) );
+				// @include background( darken( $table-bg, 30% ) );
+			}
+		}
+		tbody, th {
+			@if lightness($color) > lightness(#aaa) {
+				color: $text-color;
+			} @else {
+				color: #FFF;
+			}
+		}
+		tbody {
+			@if lightness($color) > lightness(#aaa) {
+				@include text-shadow( 0 1px 0 white( 0.7 ) );				
+			} @else {
+				@include text-shadow( 0 1px 0 rgba( darken( $table-bg, 30% ), 0.7 ) );
+			}
+			tr {
+				@include background( $table-bg );
+				// border-right-color: $border-color;
+				// border-left-color: $border-color;
+				// border-bottom-color: $border-color;
+				&.even 	{ 
+					$even-bg: darken( $table-bg, 4% );
+					@include background( $even-bg );  
+					// &:hover { 
+						// @include background( darken( $even-bg, 4.5% ) );
+					// }
+				}
+				&.odd 	{ }
+				&:hover { 
+					@include background( darken( $border-color, 2.5% ) ); 
+				}
+			}
+			td {
+				border-right-color: $border-color;
+			}		
+		}
+	}	
+}
+
+
+// ==================
+// TABLE COLORS
+// ==================
+table {
+	@each $single-color in $tables-color-pallete {
+		@include table-color(  nth($single-color, 1), nth($single-color, 2) );
+	}
+}

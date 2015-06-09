@@ -1,0 +1,19 @@
+{% extends "admin/base_site.html" %}{% load i18n yawdadmin_tags %}
+
+{% block top-bar %}{% endblock %}
+
+{% block mainbody %}
+		<section class="hero-unit">
+			<h1>{{ ADMIN_SITE_NAME }}</h1>
+			{% if ADMIN_SITE_DESCRIPTION %}
+			<p>{{ ADMIN_SITE_DESCRIPTION }}</p>
+			{% endif %}{% if langs and langs|length > 1 %}
+			<p>{% for lang in langs %}{% get_language_info for lang.name as info %}
+				<a href="{% if not lang.default %}/{{info.code}}{% endif %}{{clean_url}}"><img class="lang-switcher" src="{{lang.image.url}}" alt="{{info.name}}" title="{{info.name}}" /></a>{% endfor %}
+			</p>{% endif %}
+		</section>
+		<section class="row-fluid add-bottom">
+			<div class="span10 offset1">
+				{% block content %}{% endblock %}
+			</div>
+		</section>{% endblock %}

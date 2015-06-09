@@ -1,0 +1,43 @@
+<!--Copyright 2015 Google Inc. All Rights Reserved.
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.-->
+
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+{% load i18n %}
+
+{% block title %} - {% trans "Sorry, you need an invitation" %}{% endblock %}
+
+{% block content %}
+
+	<div id="error-invitation" class="row error-page">
+
+		<div class="error c10-15 tablet-c13-15 cols center">
+			<div class="image c6-15 tablet-c15-15 cols tablet-center-text">
+				<img src="{% static "global/illustration/404-face.png" %}">
+			</div>
+			<div class="text c9-15 tablet-c15-15 tablet-center-text mobile-center-text cols md-c10-15 md-center">
+				<h2 class="title">{% trans "Content Box is under a closed test." %}</h2>
+				<p>{% trans "If you have been invited to participate and are watching this screen please contact us for fixing this issue. Otherwise, if you have not an invitation, please wait until we open it for all people." %}</p>
+				<a class="button green medium inline-block" href="/">{% trans "Go back" %}</a>
+			</div>
+		</div>
+
+	</div>
+
+{% endblock %}
+
+{% block js %}
+{% endblock %}
+

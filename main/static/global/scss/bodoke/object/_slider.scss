@@ -1,0 +1,551 @@
+// _slider.scss
+
+// Plugin
+// unslider.js
+// http://unslider.com/
+
+// $slider-prefix:				unquote('');
+$slider-prefix:				$bodoke-prefix + '-';
+
+$slider-height:				250px;
+$slider-main-text-top:		80px;
+$slider-secondary-text-top:	180px;
+$slider-button-top:			280px;
+$slider-background:			hsl(0, 0, 95%);
+$slider-border-color:		hsl(0, 0, 90%);
+// Flechitas
+$slider-arrow-size:			80px;
+$slider-arrow-height:		40%;
+$slider-arrow-offset:		10px;
+// Bullets
+$slider-bullet-size:		12px;
+$slider-bullet-offset:		4px;
+
+// Activate CSS Animations
+$slider-animation:			false;
+
+// Z-index levels
+$slider-slide-z:			50;
+$slider-arrow-z:			100;
+
+
+// ==============================
+// SLIDER (container)
+// ==============================
+##{$slider-prefix}slider {
+	width: 100%;
+	min-width: 100%;
+	position: relative;
+	overflow: hidden;
+	margin-left: auto;
+	margin-right: auto;
+	// border: 1px solid $slider-border-color;
+	@include background( $slider-background );
+	// @include box-shadow( 0px 1px 1px white(0.2), 0px -2px 1px #fff );
+	@include transition( background 1s ease-out 0.3s );
+	@include clear();
+	ul, ol {
+		list-style: none;
+		padding: 0;
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+	&.row {
+		@include row;
+	}
+	// Link
+	.slide-link {
+		position: relative;
+		text-align: center;
+	}
+	// Imagen
+	.slide-image {
+		width: 100%;
+	}
+}
+
+
+// ==============================
+// SINGLE SLIDE
+// ==============================
+.#{$slider-prefix}slide {
+	position: relative;
+	width: 100%;
+	float: left;
+	list-style: none;
+	z-index: $slider-slide-z;
+	// Container
+	.container {}
+	// Imagen
+	.#{$slider-prefix}img {}
+}
+
+
+// CURRENT SLIDE
+// ==================================================
+
+
+// TEXTO 
+// =============================================
+.#{$slider-prefix}slide {
+	.slide-text {
+		position: relative;
+		height: 100%;
+		opacity: 1;
+		p, span { margin: 0; }
+	}
+	.text-box {
+		color: $text-color;	
+		max-height: 175px;
+	}
+	.text-line {
+		position: relative;
+		color: $text-color;
+		margin-bottom: 1.5em;
+	}
+	.slide-main-text, .slide-secondary-text {
+	}
+	.slide-secondary-text {
+		color: lighten($text-color, 10%);
+	}
+	.text-line {
+		&.slide-main-text {}
+		&.slide-secondary-text {}		
+	}
+	.#{$slider-prefix}img {
+		text-align: center;
+		width: 40%;
+		height: 100%;
+		// padding-top: $col-offset * 2;
+		line-height: 320px;
+		left: 150%;
+		top: 0;
+		img {
+			height: 100%;
+		}
+	}	
+}	
+
+
+// ===================================
+// Boton
+// ===================================
+.#{$slider-prefix}slide {
+	.#{$slider-prefix}button{
+		// color: #fff;
+		// text-align: center;
+		// display: inline-block;
+		// float: none;
+		// @include box-shadow( 0px 1px 1px black(0.1) );
+		// @include text-shadow( 1px 1px 1px black(0.2) );
+	}
+}
+
+
+// ===================================
+// Bullets
+// ===================================
+.#{$slider-prefix}bullets {
+	width: 100%;
+	position: absolute;
+	text-align: center;
+	left: 0px;
+	bottom: 20px;
+	z-index: 2000;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	span {
+		display: inline-block;
+		position: relative;
+		width: $slider-bullet-size;
+		height: $slider-bullet-size;
+		@include border-radius( 50% );
+		@include background( #fff );
+		margin: 3px;
+		cursor: pointer;
+		border: 2px solid transparent;
+		@include border-radius( 50% );
+		@include box-shadow( 
+			1px 1px 1px black(0.1) inset, 
+			1px 1px 1px white(0.1)
+		);
+	}
+	span.#{$slider-prefix}current-bullet {
+		border-color: white();
+		@include background( $google-blue );
+	}
+}
+
+// Flechitas
+// ============================================
+// How the arrows looks like?
+##{$slider-prefix}slider {
+	.slider-arrow {
+		@include v-center;
+		// top: 6.5em;
+		height: $slider-arrow-height;
+		width: $slider-arrow-size;
+		z-index: $slider-arrow-z;
+		-moz-user-select: none;
+		-webkit-user-select: none;
+		background-color: black(0.2);
+		@include opacity(0);
+		@include transition( all $transition-speed ease-in-out );
+		// @include transition( opacity $transition-speed ease-in-out );
+		// @include transition( transform 0.4s ease-in-out );
+		&.slider-left {
+			left: 0;
+			@include border-radius( 0 3px 3px 0 );
+			@include transform( translateX( -$slider-arrow-size ) );
+		}
+		&.slider-right {
+			right: 0;
+			@include border-radius( 3px 0 0 3px );
+			@include transform( translateX( $slider-arrow-size ) );
+		}
+		.arrow {
+			@include a-center;
+			font-size: $slider-arrow-size / 1.5;
+			height: $slider-arrow-size;
+			width: $slider-arrow-size;
+			line-height: $slider-arrow-size;
+			text-align: center;
+			cursor: pointer;
+			z-index: 10;
+			@include opacity(0.5);
+			@include transition( opacity $transition-speed ease-in-out );
+			&:hover {
+				@include opacity(1);
+			}
+		}
+	}
+}
+// Show me the arrows!
+##{$slider-prefix}slider:hover {
+	.slider-arrow {
+		@include opacity(1);
+		@include transform( translateX(0) );
+		// background-color: $text-color;
+		.arrow {
+			color: white;
+		}
+	}
+}
+
+
+
+// Media Query
+// ============================================
+
+// Mobile
+// =======================
+@mixin media-mobile-slide-arrow {
+	.#{$slider-prefix}arrows { display: none; }
+}
+@mixin media-mobile-slide-image {
+	$mobile-slider-height:			380px;
+	$mobile-bullet-size:			30px;
+	$mobile-slider-bottom-offset:	$mobile-bullet-size / 2;
+	##{$slider-prefix}slider {
+		position: relative;
+		height: $mobile-slider-height + $mobile-slider-bottom-offset;
+		margin-bottom: 0;
+		// min-height: auto;
+		// padding: 0;
+	}
+	.#{$slider-prefix}slide {
+		.text-box {
+			position: relative!important;
+		}	
+		.text-line {
+			text-align: left;
+			margin-bottom: 1em;
+		}
+		.slide-text {
+			width: 100%;
+			padding-left: $col-offset;
+			padding-right: $col-offset;
+		}
+		.text-box {
+			width: 90%;
+			max-height: $mobile-slider-height;
+			padding-top: $col-offset * 3;
+			padding-bottom: $col-offset * 3;
+		}
+		.slide-main-text {
+			font-size: 18px;
+		}
+		.slide-secondary-text {
+			font-size: 14px;
+		}
+		.#{$slider-prefix}img { 
+			display: none; 
+		}
+	}
+	.#{$slider-prefix}dots {
+		bottom: $mobile-slider-bottom-offset;
+		span {
+			width: $mobile-bullet-size;
+			height: $mobile-bullet-size;
+			margin: 4px;
+		}
+	}
+}
+// Tablets
+// =======================
+@mixin media-tablet-slide-arrow($arrow-size: $slider-arrow-size, $arrow-offset: $slider-arrow-offset) {
+	$tablet-slider-height:			570px;
+	$tablet-bullet-size:			30px;
+	$tablet-slider-bottom-offset:	$tablet-bullet-size / 2;
+
+	##{$slider-prefix}slider {
+		position: relative;
+		margin-bottom: 0;
+		margin-top: 0;
+	}
+
+	.#{$slider-prefix}arrows {
+		height: $arrow-size;
+		width: $arrow-size;
+		span {
+			@include opacity(1);
+			&:after {
+				width: $slider-arrow-size - $arrow-offset;
+				height: $slider-arrow-size - $arrow-offset;
+				top: $arrow-offset / 2;
+				left: $arrow-offset / 2;
+			}			
+		}
+	}
+	.#{$slider-prefix}dots {
+		bottom: $tablet-slider-bottom-offset;
+		span {
+			width: $tablet-bullet-size;
+			height: $tablet-bullet-size;
+			margin: 5px;
+		}
+	}
+}
+@mixin media-tablet-slide-image {
+	// Lo mismo que en mobile
+	// @include media-mobile-slide-image;
+	.#{$slider-prefix}slide {
+		.#{$slider-prefix}img { display: none; }
+	}
+
+}
+
+
+
+// =========================================================
+// Animation classes and animations
+// =========================================================
+
+@if ( $slider-animation ) {
+
+	// Slide in from the right
+	.#{$slider-prefix}slide-fromright {
+		.slide-main-text {
+			-webkit-animation: fromRightAnim1 0.6s ease-in-out 0.8s both;
+			-moz-animation: fromRightAnim1 0.6s ease-in-out 0.8s both;
+			-o-animation: fromRightAnim1 0.6s ease-in-out 0.8s both;
+			-ms-animation: fromRightAnim1 0.6s ease-in-out 0.8s both;
+			animation: fromRightAnim1 0.6s ease-in-out 0.8s both;
+		}
+		.slide-secondary-text {
+			-webkit-animation: fromRightAnim2 0.6s ease-in-out 0.8s both;
+			-moz-animation: fromRightAnim2 0.6s ease-in-out 0.8s both;
+			-o-animation: fromRightAnim2 0.6s ease-in-out 0.8s both;
+			-ms-animation: fromRightAnim2 0.6s ease-in-out 0.8s both;
+			animation: fromRightAnim2 0.6s ease-in-out 0.8s both;
+		}
+		.#{$slider-prefix}link {
+			-webkit-animation: fromRightAnim3 0.4s ease-in-out 1.2s both;
+			-moz-animation: fromRightAnim3 0.4s ease-in-out 1.2s both;
+			-o-animation: fromRightAnim3 0.4s ease-in-out 1.2s both;
+			-ms-animation: fromRightAnim3 0.4s ease-in-out 1.2s both;
+			animation: fromRightAnim3 0.4s ease-in-out 1.2s both;
+		}
+		.#{$slider-prefix}img {
+			-webkit-animation: fromRightAnim4 0.6s ease-in-out 0.8s both;
+			-moz-animation: fromRightAnim4 0.6s ease-in-out 0.8s both;
+			-o-animation: fromRightAnim4 0.6s ease-in-out 0.8s both;
+			-ms-animation: fromRightAnim4 0.6s ease-in-out 0.8s both;
+			animation: fromRightAnim4 0.6s ease-in-out 0.8s both;
+		}	
+	}
+	@include keyframes(fromRightAnim1) {
+		0% { left: 110%; opacity: 0; }
+		100% { left: 0%; opacity: 1; }
+	}
+	@include keyframes(fromRightAnim2) {
+		0% { left: 110%; opacity: 0; }
+		100% { left: 0%; opacity: 1; }
+	}
+	@include keyframes(fromRightAnim3) {
+		0% { left: 110%; opacity: 0; }
+		1% { left: 10%; opacity: 0; }
+		100% { left: 0%; opacity: 1; }
+	}
+	@include keyframes(fromRightAnim4) {
+		0% { left: 110%; opacity: 0; }
+		100% { left: 60%; opacity: 1; }
+	}
+
+
+
+	// Slide in from the left
+	.#{$slider-prefix}slide-fromleft {
+		.slide-main-text {
+			-webkit-animation: fromLeftAnim1 0.6s ease-in-out 0.6s both;
+			-moz-animation: fromLeftAnim1 0.6s ease-in-out 0.6s both;
+			-o-animation: fromLeftAnim1 0.6s ease-in-out 0.6s both;
+			-ms-animation: fromLeftAnim1 0.6s ease-in-out 0.6s both;
+			animation: fromLeftAnim1 0.6s ease-in-out 0.6s both;
+		}
+		.slide-secondary-text {
+			-webkit-animation: fromLeftAnim2 0.6s ease-in-out 0.4s both;
+			-moz-animation: fromLeftAnim2 0.6s ease-in-out 0.4s both;
+			-o-animation: fromLeftAnim2 0.6s ease-in-out 0.4s both;
+			-ms-animation: fromLeftAnim2 0.6s ease-in-out 0.4s both;
+			animation: fromLeftAnim2 0.6s ease-in-out 0.4s both;
+		}
+		.#{$slider-prefix}link {
+			-webkit-animation: fromLeftAnim3 0.4s ease-in-out 1.2s both;
+			-moz-animation: fromLeftAnim3 0.4s ease-in-out 1.2s both;
+			-o-animation: fromLeftAnim3 0.4s ease-in-out 1.2s both;
+			-ms-animation: fromLeftAnim3 0.4s ease-in-out 1.2s both;
+			animation: fromLeftAnim3 0.4s ease-in-out 1.2s both;
+		}
+		.#{$slider-prefix}img {
+			-webkit-animation: fromLeftAnim4 0.6s ease-in-out 1.1s both;
+			-moz-animation: fromLeftAnim4 0.6s ease-in-out 1.1s both;
+			-o-animation: fromLeftAnim4 0.6s ease-in-out 1.1s both;
+			-ms-animation: fromLeftAnim4 0.6s ease-in-out 1.1s both;
+			animation: fromLeftAnim4 0.6s ease-in-out 1.1s both;
+		}	
+	}
+	@include keyframes(fromLeftAnim1) {
+		0% { left: -110%; opacity: 0; }
+		100% { left: 0%; opacity: 1; }
+	}
+	@include keyframes(fromLeftAnim2) {
+		0% { left: -110%; opacity: 0; }
+		100% { left: 0%; opacity: 1; }
+	}
+	@include keyframes(fromLeftAnim3) {
+		// 0% { left: -110%; opacity: 0; }
+		0% { left: -10%; opacity: 0; }
+		100% { left: 0%; opacity: 1; }
+	}
+	@include keyframes(fromLeftAnim4) {
+		0% { left: 10%; opacity: 0; }
+		100% { left: 60%; opacity: 1; }
+	}
+
+
+
+	// Slide out to the right
+	.#{$slider-prefix}slide-toright {
+		.slide-main-text {
+			-webkit-animation: toRightAnim1 0.6s ease-in-out 0.6s both;
+			-moz-animation: toRightAnim1 0.6s ease-in-out 0.6s both;
+			-o-animation: toRightAnim1 0.6s ease-in-out 0.6s both;
+			-ms-animation: toRightAnim1 0.6s ease-in-out 0.6s both;
+			animation: toRightAnim1 0.6s ease-in-out 0.6s both;
+		}
+		.slide-secondary-text {
+			-webkit-animation: toRightAnim2 0.6s ease-in-out 0.3s both;
+			-moz-animation: toRightAnim2 0.6s ease-in-out 0.3s both;
+			-o-animation: toRightAnim2 0.6s ease-in-out 0.3s both;
+			-ms-animation: toRightAnim2 0.6s ease-in-out 0.3s both;
+			animation: toRightAnim2 0.6s ease-in-out 0.3s both;
+		}
+		.#{$slider-prefix}link {
+			-webkit-animation: toRightAnim3 0.4s ease-in-out both;
+			-moz-animation: toRightAnim3 0.4s ease-in-out both;
+			-o-animation: toRightAnim3 0.4s ease-in-out both;
+			-ms-animation: toRightAnim3 0.4s ease-in-out both;
+			animation: toRightAnim3 0.4s ease-in-out both;
+		}
+		.#{$slider-prefix}img {
+			-webkit-animation: toRightAnim4 0.6s ease-in-out both;
+			-moz-animation: toRightAnim4 0.6s ease-in-out both;
+			-o-animation: toRightAnim4 0.6s ease-in-out both;
+			-ms-animation: toRightAnim4 0.6s ease-in-out both;
+			animation: toRightAnim4 0.6s ease-in-out both;
+		}	
+	}
+	@include keyframes(toRightAnim1) {
+		0%{ left: 0;  opacity: 1; }
+		100%{ left: 100%; opacity: 0; }
+	}
+	@include keyframes(toRightAnim2) {
+		0%{ left: 0;  opacity: 1; }
+		100%{ left: 100%; opacity: 0; }
+	}
+	@include keyframes(toRightAnim3) {
+		0%{ left: 0;  opacity: 1; }
+		99%{ left: 10%; opacity: 0; }
+		100%{ left: 100%; opacity: 0; }
+	}
+	@include keyframes(toRightAnim4) {
+		0%{ left: 60%;  opacity: 1; }
+		30%{ left: 55%;  opacity: 1; }
+		100%{ left: 100%; opacity: 0; }
+	}
+
+
+
+	// Slide out to the left
+	.#{$slider-prefix}slide-toleft {
+		.slide-main-text {
+			-webkit-animation: toLeftAnim1 0.6s ease-in-out both;
+			-moz-animation: toLeftAnim1 0.6s ease-in-out both;
+			-o-animation: toLeftAnim1 0.6s ease-in-out both;
+			-ms-animation: toLeftAnim1 0.6s ease-in-out both;
+			animation: toLeftAnim1 0.6s ease-in-out both;
+		}
+		.slide-secondary-text {
+			-webkit-animation: toLeftAnim2 0.6s ease-in-out 0.3s both;
+			-moz-animation: toLeftAnim2 0.6s ease-in-out 0.3s both;
+			-o-animation: toLeftAnim2 0.6s ease-in-out 0.3s both;
+			-ms-animation: toLeftAnim2 0.6s ease-in-out 0.3s both;
+			animation: toLeftAnim2 0.6s ease-in-out 0.3s both;
+		}
+		.#{$slider-prefix}link {
+			-webkit-animation: toLeftAnim3 0.6s ease-in-out 0.6s both;
+			-moz-animation: toLeftAnim3 0.6s ease-in-out 0.6s both;
+			-o-animation: toLeftAnim3 0.6s ease-in-out 0.6s both;
+			-ms-animation: toLeftAnim3 0.6s ease-in-out 0.6s both;
+			animation: toLeftAnim3 0.6s ease-in-out 0.6s both;
+		}
+		.#{$slider-prefix}img {
+			-webkit-animation: toLeftAnim4 0.6s ease-in-out 0.5s both;
+			-moz-animation: toLeftAnim4 0.6s ease-in-out 0.5s both;
+			-o-animation: toLeftAnim4 0.6s ease-in-out 0.5s both;
+			-ms-animation: toLeftAnim4 0.6s ease-in-out 0.5s both;
+			animation: toLeftAnim4 0.6s ease-in-out 0.5s both;
+		}	
+	}
+	@include keyframes(toLeftAnim1) {
+		0%{ left: 0;  opacity: 1; }
+		30%{ left: 15%;  opacity: 1; }
+		100%{ left: -50%; opacity: 0; }
+	}
+	@include keyframes(toLeftAnim2) {
+		0%{ left: 0;  opacity: 1; }
+		30%{ left: 15%;  opacity: 1; }
+		100%{ left: -50%; opacity: 0; }
+	}
+	@include keyframes(toLeftAnim3) {
+		0%{ left: 0;  opacity: 1; }
+		100%{ left: -50%; opacity: 0; }
+	}
+	@include keyframes(toLeftAnim4) {
+		0%{ left: 60%;  opacity: 1; }
+		70%{ left: 30%;  opacity: 0; }
+		100%{ left: -50%; opacity: 0; }
+	}
+
+}

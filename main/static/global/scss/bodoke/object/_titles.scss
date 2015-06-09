@@ -1,0 +1,48 @@
+// _titles.scss
+
+
+.title {
+	$normal: 2.8em;
+	font-size: $normal;
+	line-height: 1em;
+	font-weight: 300;
+	span {
+		&.yellow { color: $yellow; }
+	}
+}
+
+
+
+// =========================
+// Sizes
+// =========================
+.title {
+	&.small {
+		$small: 1.4em;
+		font-size: $small;
+		// line-height: $small * 1.42857143;
+		line-height: 1.3em;
+	}
+	&.medium {
+		font-size: 2em;
+	}
+	&.bigger {
+		font-size: 3.7em;
+		line-height: 1.1em;
+	}
+}
+
+h1,h2,h3,h4,h5,h6 {
+	margin-top: 0;
+}
+
+// =========================
+// Colors
+// =========================
+.title {
+	@each $single-color in $titles-color-pallete {
+		&.#{nth($single-color, 1)} {
+			color: nth($single-color, 2);
+		} 
+	}
+}

@@ -1,0 +1,82 @@
+// _fonts.scss
+
+// ==============================
+// FUENTES
+// ==============================
+
+
+// Lista de fuentes para utilizar
+// ==============================
+$open-sans:				'Open Sans', sans-serif;
+$open-sans-condensed:	'Open Sans Condensed', sans-serif;
+$fjalla-one:			'Fjalla One', sans-serif;
+$courrier:				'Courrier', 'courrier new', monospace;
+$lucida-sans:			'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+$verdana:				Verdana, Helvetica, Geneva, sans-serif;
+$fontAwesome:			'FontAwesome', sans-serif;
+
+$bodoke-font:			'Bodoke';
+
+$text-font:				$open-sans;
+$number-font:			$lucida-sans;
+$text-condensed:		$fjalla-one;
+
+
+// ======================
+// FUENTES / TIPOGRAFIA
+// ======================
+$global-font:			$text-font;
+$global-font-size:		14px;
+$icon-font:				$fontAwesome;
+
+// Carga las fuentes
+// ==============================
+// @include font-face( 'Bodoke', font-files('Bodoke.tff', 'ttf'), $FONTPATH );
+// @font-face {
+// 	font-family: $bodoke-font;
+// 	src: url($FONTPATH+'Bodoke.tff');
+// 	src: url($FONTPATH+'Bodoke.tff') format('eot'), url($FONTPATH+'Bodoke.tff') format('truetype');
+// }
+
+
+// ==============================
+// Icon fonts
+// ==============================
+// FontAwesome
+$fa-font-path:			$FONTPATH;
+$fa-css-prefix:			'fa';
+$fa-version:			4.2.0;
+
+@font-face {
+	font-family: 'FontAwesome';
+	src: url('#{$fa-font-path}fontawesome-webfont.eot?v=#{$fa-version}');
+	src: url('#{$fa-font-path}fontawesome-webfont.eot?#iefix&v=#{$fa-version}') format('embedded-opentype'),
+		 url('#{$fa-font-path}fontawesome-webfont.woff?v=#{$fa-version}') format('woff'),
+		 url('#{$fa-font-path}fontawesome-webfont.ttf?v=#{$fa-version}') format('truetype'),
+		 url('#{$fa-font-path}fontawesome-webfont.svg?v=#{$fa-version}#fontawesomeregular') format('svg');
+	//src: url('#{$fa-font-path}FontAwesome.otf') format('opentype'); // used when developing fonts
+	font-weight: normal;
+	font-style: normal;
+}
+
+// Font Icons
+[class*="#{$fa-css-prefix}"]:before {
+	display: inline-block;
+	font-family: FontAwesome;
+	font-style: normal;
+	font-weight: normal;
+	// line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+@import "../object/font-icons-variables";
+@import "../object/font-icons";
+
+@mixin fa {
+	[class*=#{$fa-css-prefix}] {
+		@content;
+	}
+}
+
+

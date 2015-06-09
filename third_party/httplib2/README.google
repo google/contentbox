@@ -1,0 +1,12 @@
+URL: https://github.com/jcgregorio/httplib2
+Version: 0.9.1
+License: MIT License
+License File: LICENSE
+
+Description:
+A comprehensive HTTP client library.
+A comprehensive HTTP client library,
+httplib2 supports many features left out of other HTTP libraries.
+
+Local Modifications:
+No Modifications.

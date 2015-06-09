@@ -1,0 +1,40 @@
+<!--Copyright 2015 Google Inc. All Rights Reserved.
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.-->
+
+<ul class="lang">
+	<li class="{% if LANGUAGE_CODE == 'en' %}active-lang{% endif %}">
+		<form class="setLangEnglish" action="/i18n/setlang/" method="POST">{% csrf_token %}
+			<input type="hidden" name="language" value="en" />
+			<a href="#" onclick="$('.setLangEnglish').first().submit();return false;" title="English">
+				<i class="icon flag eng"></i>
+			</a>
+		</form>
+	</li>
+	<li class="{% if LANGUAGE_CODE == 'pt' %}active-lang{% endif %}">
+		<form class="setLangPortuguese" action="/i18n/setlang/" method="POST">{% csrf_token %}
+			<input type="hidden" name="language" value="pt" />
+			<a href="#" onclick="$('.setLangPortuguese').first().submit();return false;" title="Portuguese">
+				<i class="icon flag bra"></i>
+			</a>
+		</form>
+	</li>
+	<li class="{% if LANGUAGE_CODE == 'es' %}active-lang{% endif %}">
+		<form class="setLangSpanish" action="/i18n/setlang/" method="POST">{% csrf_token %}
+			<input type="hidden" name="language" value="es" />
+			<a href="#" onclick="$('.setLangSpanish').first().submit();return false;" title="Espa&ntilde;ol">
+				<i class="icon flag spa"></i>
+			</a>
+		</form>
+	</li>
+</ul>

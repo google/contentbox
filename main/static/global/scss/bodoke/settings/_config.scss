@@ -1,0 +1,48 @@
+// _vars.scss
+// Variables globales para todo el sitio
+
+
+// ======================
+// PATHS
+// ======================
+$IMGPATH: 				'../images/';
+$FONTPATH:				'../fonts/';
+
+
+// ======================
+// UNIDADES BASICAS
+// ======================
+// Ems base
+$base-em:				16px; // 16px = 1em
+// Tiempo
+$transition-speed:		0.35s;
+// Icons
+$px-icon-size:			24px;
+$em-icon-size:			em($px-icon-size / $base-em);
+// Icon sizes
+$md-icon-size:			$px-icon-size;
+$sm-icon-size:			16px;
+$icon-size:				$px-icon-size;
+
+
+// ======================
+// RESOLUCIONES
+// ======================
+// Aspect Ratio
+$ratio-square:			4 / 3;
+$ratio-wide:			16 / 3;
+$aureo: 				(1 + sqrt(5) ) / 2;
+// Viewport Widths
+$screen-very-old:		800px;
+$screen-old:			1024px;
+$screen-laptop:			1366px;
+$screen-netbook:		600px;
+
+
+
+// ======================
+// PREFIJOX / PREFIX
+// ======================
+$prefix-css: 			( '-webkit-', '-ms-', '-moz-', '-o-', 'khtml' );
+$prefix-transform: 		('-webkit-', '-ms-', '-moz-', '-o-');
+$prefix-user-select: 	('-webkit-', '-ms-', '-moz-', '-khtml-');

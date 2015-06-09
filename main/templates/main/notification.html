@@ -1,0 +1,54 @@
+<!--Copyright 2015 Google Inc. All Rights Reserved.
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.-->
+
+{% load staticfiles %}
+{% load i18n %}
+
+<div class="item-link noti-bell" onclick="notification( $(this) );">
+	<small class="number">3</small>
+	<i class="ficon fa-bell"></i>
+</div>
+<div class="notification-panel">
+	<h5 class="title center-text">{% blocktrans with site_name=config.site_name %}{{ site_name }} notifications{% endblocktrans %}</h5>
+	<ul class="list noti-list">
+		{% for j in 'xxx' %}
+			<li class="noti-item">
+				<a href="#" class="noti-image">
+					<img class="" src="{% static "global/images/placeholder/box-thumb.jpg" %}">
+				</a>
+				<div class="noti-data">
+					<a href="#" class="noti-link">
+						<h6 class="noti-title">{% trans "There's a new box available" %}</h6>
+						<h6 class="box-name">{% trans "Box name" %}</h6>
+						<ul class="list tags">
+							{% for i in 'xxx'  %}
+								<li class="tag">
+									<img
+										class="tag-img"
+										src="{% static "global/images/placeholder/user.png" %}"
+										title="Box category" />
+								</li>
+							{% endfor %}
+						</ul>
+					</a>
+				</div>
+				<i class="ficon close-icon fa-times" onclick="close_notification( $(this).parents('.noti-item') )"></i>
+			</li>
+		{% endfor %}
+		<li class="empty-notification">
+			<img src="{% static "global/images/google-bell-smile.gif" %}" onclick="refresh_gif($(this))">
+			<p>{% trans "No new boxes yet. Please come back later!" %}</p>
+		</li>
+	</ul>
+</div>

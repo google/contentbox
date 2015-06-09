@@ -1,0 +1,212 @@
+// _notifications.scss
+
+// =================
+// NOTIFICACIONES
+// =================
+$noti-height:			100px;
+
+.notifications {
+	&.handheld {
+		width: 60px;		
+	}
+	.item-link {
+		line-height: $header-option-size;
+		position: relative;
+		max-width: $header-option-size;
+		text-align: center;			
+	}
+	.number {
+		position: absolute;
+		left: 3px;
+		top: 3px;
+		color: $white;
+		line-height: 15px;
+		padding-left: 4px;
+		padding-right: 4px;
+		font-size: 0.5em;
+		text-align: center;
+		@include border-radius(50%);
+		background-color: $red;
+		border: 1px solid $white;
+		z-index: 20;
+	}
+	.ficon {
+	}
+}
+.notification-panel {
+	display: none;
+	position: absolute;
+	top: $header-option-size + ($header-option-size / 3);
+	right: -100px;
+	width: 400px; // Ver
+	background-color: $gray;
+	border: 1px solid $gray-border;
+	padding-right: $col-offset * 2;
+	padding-left: $col-offset * 2;
+	padding-top: $col-offset * 2;
+	padding-bottom: $col-offset;
+	@include header-box-shadow();
+	@include arrow( $gray, 6px, 'top', 70% );
+	.title {
+		font-size: 1.1em;
+	}
+	.noti-list {}
+	.noti-item {
+		position: relative;
+		float: none;
+		height: $noti-height;
+		border-bottom: gray(245);
+		margin-bottom: $col-offset;
+		background-color: white;
+		@include border-radius( 5px );
+		@include header-box-shadow();
+		.noti-image, .noti-data {
+			height: 100%;
+			float: left;			
+			display: block;
+			position: relative;
+		}
+		.noti-image {
+			padding-right: $col-offset;
+			img {
+				height: 100%;
+			}
+		}
+		.noti-data {
+			padding-top: $col-offset;
+			padding-bottom: $col-offset;
+			font-size: 18px;
+			text-align: left;
+		}
+		.noti-title, .box-name {
+			margin-bottom: $col-offset / 2;
+			font-size: 0.7em;
+		}
+		.noti-title {
+			color: gray(210);
+			font-weight: 300;
+		}
+		.box-name {
+			@include truncate-line();
+		}
+		.close-icon {
+			position: absolute;
+			right: $col-offset / 2;
+			top: $col-offset / 2;
+			font-size: 16px;
+			color: gray(210);
+			&:hover {
+				color: $text-color;
+			}
+		}
+	}
+	.noti-link {
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+}
+// Sin notificaciones
+.notifications {
+	.empty-notification {
+		display: none;
+		height: $noti-height * 2;
+		text-align: center;
+		img {
+			margin-bottom: $col-offset;
+		}
+		p {
+
+		}
+	}
+}
+
+
+
+// ==========================
+// MEDIA QUERIES
+// ==========================
+
+// Mobile
+@mixin media-mobile-notifications() {
+	.header {
+		.notifications {
+			padding-left: 0;
+			padding-right: 0;
+			text-align: center;
+			&.handheld {
+				width: 40px;
+			}
+			.item-link {
+				@include header-option-height();
+			}
+			.ficon {
+				color: $white;				
+			}
+		}
+		.notification-panel {
+			position: fixed;
+			top: $header-height;
+			right: 0;
+			width: 100%;
+			height: 100%;
+			padding: $col-offset;
+			overflow: hidden;
+			overflow-y: auto;
+			z-index: 110;
+			&:after {
+				left: 93.5%;
+			}
+			.title {
+				margin-bottom: $col-offset;
+			}
+			.noti-item {
+				height: $noti-height / 2.15;
+				margin-bottom: 5px;
+				.box-name {
+					margin-bottom: 0;
+				}
+			}
+			.noti-image {}
+			.noti-data {
+				padding-top: 5px;
+				padding-bottom: 5px;
+				.tags {
+					display: none;
+				}
+			}
+
+		}
+	}
+}
+
+// 800
+@mixin media-800-notifications() {
+	.header {
+		.notifications {
+			.title {
+				font-size: 1.5em;
+				padding-top: $col-offset;
+			}
+			.item-link {
+				@include header-option-height();				
+			}
+			.ficon {
+				color: $white;				
+			}
+		}
+		.notification-panel {
+			position: fixed;
+			top: $header-height;
+			right: 0;
+			width: 100%;
+			height: auto;
+			padding: $col-offset * 2;
+			padding-top: $col-offset;
+			@include box-shadow(0 2px 6px 2px black(0.3) );
+			&:after {
+				left: 53%;
+			}
+		}
+	}
+}

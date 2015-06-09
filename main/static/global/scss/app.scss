@@ -1,0 +1,132 @@
+// app.scss
+//
+// Hoja de estilos para la aplicacion/sitio web
+//
+
+// =======================================
+// BODOKE
+// Incluye bodoke.css
+// =======================================
+@import "bodoke";
+
+
+
+// =======================================
+// ---------------------------------------
+// ESTILOS GLOBALES
+// Aca debe ir generada la(s) grillas
+// mas algun estilo que abarque 
+// al <html>, <body> o las <section>
+// ---------------------------------------
+// =======================================
+
+
+// ================================
+// GRILLA(S)
+// ================================
+
+// Genera una grilla de 12 columnas
+@include grid(15);
+
+
+
+// ================================
+// GLOBALES
+// ================================
+html {
+	height: 100%;
+	// Descomentar unicamente si la version desktop
+	// es una aplicacion diferente a la mobile
+	/*
+	&, body {
+		min-width: 1000px;
+		min-height: 600px;
+	}
+	*/
+}
+
+body {
+	position: 		relative;
+	color: 			$text-color;
+	font-family: 	$global-font; 		// config.scss
+	font-size: 		$global-font-size; 	// config.scss
+	&.full {
+		height: 100%;
+		.container {
+			min-height: 100%;
+		}
+	}
+	// &.min100 {
+	// 	&, .container {
+	// 		min-height: 100%;
+	// 	}
+	// }
+}
+
+
+// =======================================
+// SECCIONES Y ELEMENTOS DEL SITIO
+// =======================================
+@import "box";
+@import "box-preview";
+@import "box-detail";
+@import "header";
+@import "footer";
+@import "content";
+@import "side-nav";
+@import "wall";
+@import "about";
+@import "error";
+@import "vendor/blueimp";
+
+
+
+// =========================================
+// Media Queries
+// =========================================
+// 0.0.5
+@media only screen and (min-width: 1025px ) and (max-width: 1280px ) {
+	@include media-1280-detail-back-button;
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1024px ) {
+	@import "media/1024";
+}
+// Only Tablets!!!
+@media only screen and (min-device-width: 769px) and (max-device-width: 1024px ) {
+	@import "media/1024_tablet";
+}
+
+@media only screen and (min-width: 641px) and (max-width: 768px ) {
+	@import "media/768"; // Nuevo nombre (ex _800.scss)
+}
+
+
+@media only screen and (max-height: 600px) {
+	@import "media/netbook";
+}
+
+// @media only screen and (max-device-height: 480px) {
+@media only screen and (min-width: 320px) and (max-width: 640px) {
+	@import "media/mobile";
+}
+
+// 0.0.2
+// @media smartphone in landscape position
+@media only screen and (min-width: 321px) {
+	@import "media/mobile-landscape";
+}
+
+// 0.0.3
+// @media para estilos que funcionan solo en Firefox
+@-moz-document url-prefix() {
+	@import "media/firefox";
+}
+
+
+// ============================================
+// Print styles
+// ============================================
+@media print {
+	@import "media/print";
+}

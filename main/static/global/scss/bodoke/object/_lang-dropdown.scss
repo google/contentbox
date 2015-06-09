@@ -1,0 +1,65 @@
+// _lang-dropdown.scss
+
+$lang-opt-height:	32px;
+$lang-opt-width:	48px;
+$lang-opt-bg:		darken( $color-1, 15% );
+$lang-opt-hover:	black(0.1);
+$lang-opt-shadow:	true;
+
+.lang {
+	position: relative;
+	width: $lang-opt-width;
+	height: $lang-opt-height;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	z-index: 100;
+	li, .item {
+		position: relative;
+		float: none;
+		width: $lang-opt-width;
+		height: $lang-opt-height;
+		border: transparent;
+		@include transition( background $transition-speed ease );
+		.icon {
+			@include a-center;
+		}
+		&:hover {
+			background-color: $lang-opt-hover;			
+		}
+		a, form {
+			display: block;
+			height: 100%;
+			width: 100%;
+		}
+	}
+	&:hover {
+		height: auto;
+		background-color: $lang-opt-bg;
+		@if ( $lang-opt-shadow ) {
+			@include box-shadow( 0 2px 1px 0 black(0.2) );
+		}		
+		li, .item {
+			a {}
+		}
+	}
+}
+
+
+@mixin lang($height:$lang-opt-height, $width:$lang-opt-width) {
+	.lang {
+		&, li, .item {
+			@if ( $width == '') {
+				$size: $height;
+				width: $size;
+				height: $size;
+			} @else {
+				width: $width;
+				height: $height;				
+			}
+		}
+		&:hover {
+			height: auto;
+		}
+	}
+}

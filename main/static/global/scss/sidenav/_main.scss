@@ -1,0 +1,225 @@
+// _main.scss
+
+@mixin main-sidenav-center {
+	width: 80%;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+// ========================
+// SIDE NAV PRINCIPAL
+// ========================
+#main-side-nav {
+	.title {
+		margin-bottom: $col-offset;
+		margin-left: $col-offset / 2;
+		margin-right: $col-offset / 2;
+		padding-bottom: $col-offset / 2;
+		border-bottom: 1px solid $gray-border;
+	}
+	.list {
+		margin-top: $col-offset;
+		margin-bottom: $col-offset;
+		// @include row;
+		padding-bottom: $col-offset;
+		// border-bottom: 1px solid $gray-border;
+		.item {
+			width: 100%;
+			padding-top: $side-nav-item-padding;
+			padding-bottom: $side-nav-item-padding;
+			padding-right: $col-offset;
+			padding-left: $col-offset;
+
+			// width: 80%;
+			// margin-left: 0;
+			// margin-right: 0;
+
+
+			cursor: pointer;
+			font-size: 1em;
+			@include transition( background $transition-speed ease );
+			@include text-shadow( 0 1px 0 white(0.4) );
+			&:hover, &.active {
+				background-color: gray(247);
+			}
+		}
+		.tag-name {
+			display: block;
+			line-height: $side-nav-tag-height;
+		}
+		.ficon {
+			font-size: 1.5em;
+			margin-right: $col-offset / 4;
+		}
+		.item, .ficon {			
+			color: $text-color;
+		}
+	}
+}
+#view-all {
+	border-top: 1px solid $gray-border;
+	padding-top: $col-offset / 2;
+	padding-bottom: $col-offset / 2;
+	// margin-top: $col-offset;
+	line-height: 24px;
+	position: relative;
+	float: none;
+	clear: both;
+	@include text-shadow( 0 1px 0 white(0.6) );
+	.tag-img {
+		text-align: center;
+		line-height: 24px;
+		font-size: 1.2em;
+		border: none;
+		@include border-radius(0);
+	}
+	&:hover, &.active {
+		background-color: gray(230);
+	}
+}
+
+
+// ========================
+// DROPDOWN
+// ========================
+#dropdown-filter {
+	display: none;
+	padding-left: 0;
+	padding-right: 0;
+	margin-left: auto;
+	margin-right: auto;
+	float: none;
+	.list {
+		margin: 0;
+	}
+}
+#simple-filter {
+	display: block;
+}
+
+
+
+// ==========================
+// MEDIA QUERIES
+// ==========================
+// Mobile
+@mixin media-mobile-sidenav-main {
+	#main-side-nav {
+		// padding-top: $header-height + px($col-offset);
+		padding-top: 0;
+		.list {
+			margin: 0;
+			overflow: hidden;
+			overflow-y: auto;
+			max-height: $dropdown-height * 4;
+		}
+		.scrolleable-area {
+			overflow: visible;
+		}
+		.scrolleable-area, .list {
+			padding-bottom: 0;
+		}
+	}
+
+	#main-side-nav {
+		#language-list {
+			.item {
+				.item-img {
+					height: auto;
+				}
+			}
+		}
+	}
+	.not-logged {
+		.side-nav {
+			padding-top: $col-offset;			
+		}
+	}
+	.logged {
+		.side-nav {
+			padding-top: $small-header-height;
+		}
+	}
+
+	// ========================
+	// DROPDOWN
+	// ========================
+	#dropdown-filter {
+		margin-top: $col-offset;
+		margin-bottom: $col-offset;
+		display: block!important;
+	}
+	#simple-filter {
+		display: none!important;
+	}
+}
+
+// 768
+@mixin media-768-sidenav-main {
+	#main-side-nav {
+		padding-top: 0;
+		padding-left: $col-offset;
+		padding-right: $col-offset;
+		.list {
+		}
+		.scrolleable-area {
+			overflow: visible;
+		}
+	}
+	// ========================
+	// DROPDOWN
+	// ========================
+	#dropdown-filter {
+		display: block!important;
+		margin-top: $col-offset;
+		margin-bottom: $col-offset;
+		.list {
+			margin-top: 0;
+			margin-bottom: 0;
+			padding: 0;				
+		}
+		#view-all {
+			position: relative;
+			border: none;
+		}
+	}
+	#simple-filter {
+		display: none!important;
+	}
+}
+
+// 1024 - Tablet
+@mixin media-1024_tablet-sidenav-main {
+	#simple-filter {
+		display: none!important;
+	}
+}
+
+// 1024
+@mixin media-1024-sidenav-main {
+	#main-side-nav {
+		padding-top: 0;
+		// @include main-sidenav-language(6);
+		.scrolleable-area {
+			overflow: visible;
+		}
+		.list {
+			.item {
+				width: 100%;
+				margin-left: 0;
+				margin-right: 0;
+				padding-left: $col-offset;
+				padding-right: $col-offset;
+			}
+		}
+	}
+	// ========================
+	// DROPDOWN
+	// ========================
+	#dropdown-filter {
+		display: none!important;
+	}
+	#simple-filter {
+		display: block!important;
+	}
+}

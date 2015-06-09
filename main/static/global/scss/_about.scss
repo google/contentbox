@@ -1,0 +1,92 @@
+// _about.scss
+
+$help-container-padding: 	$col-offset * 2;
+
+#help {
+	.header-large {
+		background-color: $color-2;
+		margin-bottom: $col-offset * 3;
+		@include row( $help-container-padding);
+		.back-button, .title {
+			display: block;
+			float: left;
+			line-height: 48px;
+		}
+		.back-button {
+			background-color: $header-item-color-hover;
+			margin-right: $col-offset / 2;
+			&:hover {
+				background-color: black(0.3);
+			}
+		}
+		.ficon {
+			color: $white;			
+		}
+		.header-title {
+			background-color: transparent;
+			color: $text-color;
+			padding-left: 0;
+		}
+	}
+	.container {
+		width: 59%;
+		min-height: 100%;
+		height: auto;
+		padding-left: $help-container-padding;
+		padding-right: $help-container-padding;
+		padding-top: $small-header-height;
+		padding-bottom: $col-offset * 3;
+		margin-bottom: $col-offset * 4;
+		@include border-radius( 0 0 5px 5px );
+		@include box-shadow( 0 1px 3px 0px black(0.3) );
+	}
+	.main.title {
+		// font-size: 8em;
+		margin-bottom: 0;
+		padding-bottom: 0;
+	}
+	.question {
+		margin-bottom: $col-offset * 3;
+		.title {
+			font-size: 2em;
+			margin-bottom: $col-offset / 2;
+		}
+		p {
+			font-size: 0.9em;
+			line-height: 1.6em;
+		}
+		a {
+			@include text-shadow( 0 1px 0 rgba(49, 145, 190, 0.4) );
+		}
+	}
+}
+
+
+// =========================
+// COLORES POR SECCION
+// =========================
+#faq .header-large {
+	background-color: $color-2;
+}
+#tyc .header-large {
+	background-color: $google-red;
+}
+#about .header-large {
+	background-color: $google-green;
+}
+
+
+
+// ===========================
+// MEDIA QUERIES
+// ===========================
+@mixin media-768-help() {
+	#help {
+		height: auto;
+		.container {
+			width: 100%;
+			min-height: initial;
+			@include box-shadow( none );
+		}
+	}
+}

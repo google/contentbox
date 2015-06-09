@@ -1,0 +1,16 @@
+URL: https://pypi.python.org/pypi/Django/
+Version: 1.8.1
+License: BSD License
+License File: LICENSE
+
+Description:
+A high-level Python Web framework that encourages rapid development and clean,
+pragmatic design.
+Django is a high-level Python Web framework that encourages
+rapid development and clean, pragmatic design.
+
+Local Modifications:
+file: django/core/cache/backends/memcached.py
+change: 155 line:
+-import memcache
++from google.appengine.api import memcache

@@ -1,0 +1,116 @@
+// _home.scss
+
+$side-nav-profile-image-size: 	55px;
+$side-nav-item-padding:			$col-offset / 1.5;
+$side-nav-tag-height:			$tag-height;
+
+.side-nav {
+	position: fixed;
+	left: 0;
+	top: 0;
+	height: 100%;
+	background-color: $white;
+	border-right: 1px solid black(0.2);
+	padding-top: $small-header-height + px($col-offset);
+	padding-bottom: $col-offset;
+	.scrolleable-area {
+		height: 100%;
+		overflow: hidden;
+		overflow-y: auto;
+		padding-bottom: $footer-stats-height;
+	}
+}
+
+#toggle-side-nav {
+	background-color: $gray;
+	padding-top: $col-offset;
+	padding-bottom: $col-offset;
+	@include box-shadow( inset 0px 3px 5px 0 black(0.35) );
+	@include text-shadow( 0 1px 0 0 white(0.3) );
+	.ficon {
+		color: gray(180);
+		@include transition( transform $transition-speed ease );
+	}
+}
+
+.show-filters #toggle-side-nav .ficon {
+	@include transform( rotate3d(0,0,0, -180deg ) );
+}
+
+@import 'sidenav/main';
+@import 'sidenav/detail';
+
+
+// ========================
+// ARCHIVOS DEL DRIVE
+// ========================
+#box-files {
+	.file-icon {
+		height: $icon-size;
+	}
+	tr {
+		border-bottom: 1px solid $gray-border;
+	}
+}
+
+
+
+// ========================
+// MEDIA QUERIES
+// ========================
+
+@mixin toggleSideNav( $sideNav: '.side-nav' ) {
+	#{$sideNav} {
+		// Height animation trick!
+		max-height: 0;
+		overflow: hidden;
+		padding: 0;
+	}
+	.show-filters #{$sideNav} {
+		max-height: 1000px;
+		@content;
+	}		
+}
+	
+// MOBILE
+@mixin media-mobile-sidenav {
+	.side-nav {
+		position: relative;
+		top: auto;
+		left: auto;
+		height: auto;
+		footer {
+			display: none;
+		}
+	}
+	// @include toggleSideNav();
+}
+// 800
+@mixin media-800-sidenav {
+	.side-nav {
+		padding: 0;
+		height: auto;
+		position: relative;
+		// nuevo
+		padding-top: $col-offset;
+		padding-bottom: 0;	
+		@include transition( max-height $transition-speed ease );
+		.scrolleable-area {
+			padding-bottom: 0;
+		}
+	}
+	// @include toggleSideNav() {
+	// }
+	
+}
+
+
+// 1024
+@mixin media-1024-sidenav {
+	.side-nav {
+		font-size: 12px;
+	}
+	#toggle-side-nav {
+		display: none!important;
+	}
+}

@@ -1,0 +1,5 @@
+{% if objects %}{% csrf_token %}<ol class="root">{% for node in objects %}
+	<li data-pk="{{node.pk}}">
+		<div class="title grey-degrade"><i class="icon-sort"></i> {{node}}</div>
+	</li>{% endfor %}
+</ol>{% endif %}

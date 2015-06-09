@@ -1,0 +1,66 @@
+/* 
+* _800.scss
+* Resoluciones hasta 800px
+*/
+
+// Aca hay que incluir como un @mixin todas las reglas
+// que deban funcionar en resoluciones menores a 800px de ancho
+// Ej.: @include media-800-footer;
+
+// ======================================================================
+
+// @include media-1024-footer();
+
+
+body {}
+
+// Area - Header
+// ===============================
+@include media-768-header();
+@include media-768-subheader();
+@include media-800-notifications();
+@include media-800-search();
+@include media-768-userdata();
+
+// OffCanvas - Mobile
+// @include media-mobile-offcanvas();
+
+
+// Area - Content
+// ===============================
+@include media-800-content();
+
+
+// Area - Sidenav
+// ===============================
+@include media-768-sidenav-main();
+// SideNav
+@include media-800-sidenav();
+
+
+// Box
+// ===============================
+@include media-768-box();
+@include media-box-calltoaction-visible();
+@include media-800-box-preview();
+@include media-768-box-detail();
+
+
+// Section - Detail
+// ===============================
+@include media-768-sidenav-detail();
+
+
+// Section - Footer
+// ===============================
+@include media-768-footer();
+
+
+// Section - About
+// ===============================
+@include media-768-help();
+
+
+// Section - Wall
+// ===============================
+@include media-768-wall();

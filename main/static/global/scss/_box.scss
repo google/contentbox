@@ -1,0 +1,264 @@
+// _box.scss
+
+$box-thumb-height:				auto;
+$box-thumb-margin:				3px;
+$box-thumb-register-height:		24px;
+
+$tag-height:					24px;
+
+// ======================
+// BOXES
+// ======================
+.boxes {
+	height: 100%;
+	padding: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-left: $box-thumb-margin * 2;
+	padding-top: $box-thumb-margin;
+	padding-bottom: $box-thumb-margin * 2;
+}
+
+
+
+// ======================
+// THUBMNAIL BOXES
+// ======================
+.box.thumb {
+	height: $box-thumb-height;
+	overflow: visible;
+	padding: 0;
+	padding-right: $box-thumb-margin;
+	padding-top: $box-thumb-margin;
+	// padding-bottom: $col-offset / 2;
+	.inner-box {
+		display: block;
+		width: 100%;
+		height: 100%;
+		text-decoration: none;
+		cursor: pointer;
+		border: 1px solid $gray-border;
+		@include transition( background $transition-speed ease );
+		&:hover {
+			@include bdk-background( $blue );
+			.image {
+				@include opacity(.9);
+			}
+		}
+	}
+	.image {
+		@include aspect-ratio( calculate-ratio(1,1), 'img' );
+		img {
+			@include transition( opacity $transition-speed ease );
+		}
+		.front-img { z-index: 20; }
+		.back-img { z-index: 10; }
+		&:hover {
+			.front-img { @include opacity(0); }
+			.call-to-action {  }
+		}
+	}
+	.data {
+		position: relative;
+		padding-top: $col-offset;
+		padding-bottom: $col-offset;
+		border-top: 0;
+		@include clear();
+		.box-name {
+			padding-left: $col-offset;
+			padding-right: $col-offset;
+			margin-bottom: $col-offset / 3;
+			color: $text-color;
+			line-height: 1.5em;
+			font-size: 0.9em;
+			font-weight: 600;
+			@include truncate-line();		
+		}
+	}
+	.call-to-action {
+		position: absolute;
+		right: $col-offset / 2;
+		display: block;
+		padding: 0px 6px;
+		@include transition( all $transition-speed ease );
+		z-index: 40;
+		&:hover {
+			color: white;
+			.ficon {}
+			.message {
+				@include opacity(1);
+				@include transform( translateX(0) );
+			}
+		}
+		.message, i {
+			@include transform( translateX(-5px) );
+			color: inherit;
+		}
+	}
+	// Registered Icon
+	.registered {
+		top: $col-offset / 2;
+		cursor: default;
+		z-index: 40;
+		.ficon {
+			color: $green;
+			font-size: 1.2em;
+			@include box-shadow( 0 0 1px 0 white(0.3) );
+		}
+		.message {
+			color: $white;
+			line-height: $box-thumb-register-height + 2px;
+		}
+		&:hover {
+			background-color: $green;
+			.ficon {
+				color: $white;				
+				@include box-shadow( none );
+			}
+		}		
+	}
+	// Sign In Icon
+	.enter {
+		bottom: -2px;
+		margin: auto;
+		color: $light-blue;	
+		&:hover {
+			@include bdk-background( darken($blue, 10%) );
+		}
+	}
+	// Sign Out / Leave Box icon
+	.leave-box {
+		top: $col-offset / 2;
+		margin: auto;
+		color: $red;
+		&:hover {
+			@include bdk-background( darken($red, 10%) );
+		}
+	}
+
+
+	.message {
+		@include opacity(0);
+		// @include transition( all $transition-speed ease );
+		@include transform( translateX(5px) );
+		display: block;
+		float: left;
+		font-size: 0.75em;
+		margin-right: 0.5em;
+	}
+	.message {
+		line-height: $box-thumb-register-height + 4px;
+	}
+	.ficon {
+		line-height: $box-thumb-register-height;
+	}
+}
+
+
+
+// ======================
+// THUBMNAIL TAGS
+// ======================
+.tag {
+	display: block;
+	margin-right: $col-offset / 3;
+	.tag-img, .tag-title {
+		position: relative;
+		display: block;
+		float: left;
+		margin-right: 0.5em;
+	}
+	.tag-img {
+		width: $tag-height;
+		height: $tag-height;
+		border: 1px solid $gray-border;
+		@include border-radius( 50% );
+	}
+	.tag-title {
+		font-size: 0.8em;
+		@include arrow( black(0.65), 5px, 'left', 50% );
+		padding: 3px 6px;
+		color: white;
+		top: 2px;
+	}
+}
+
+.box.thumb {
+	.tags {
+		// margin: ($col-offset / 3) 0 0 0;
+		height: $tag-height;
+		padding-left: 0;
+		margin-top: 0;
+		margin-bottom: 0;
+		margin-left: (-$box-thumb-margin);
+		float: left;
+		overflow: hidden;
+		@include clear();
+		.tag {
+			float: left;
+			margin-right: 0;
+		}
+		.tag-img {
+			background-color: $white;
+			margin-right: $col-offset / 3;
+			@include transition( box-shadow $transition-speed ease );
+			&:hover {
+				@include box-shadow( 0 0 2px 0 rgba($color-2, 0.4) );
+			}
+		}
+	}
+}
+
+
+
+// ========================
+// MEDIA QUERIES
+// ========================
+
+// Mobile
+@mixin media-mobile-boxes {
+	.boxes {
+		padding-left: $box-thumb-margin;
+		padding-bottom: $col-offset * 2;
+	}
+}
+@mixin media-mobile-box {
+	.box.thumb {
+		width: 50%;
+	}
+}
+
+
+// 768
+@mixin media-768-box {
+	.box.thumb {
+		width: (100% / 3);
+	}
+}
+
+// 1024
+@mixin media-1024-box {
+	.box.thumb {
+		// width: (100% / 3);
+	}
+}
+
+@mixin media-box-calltoaction-visible {
+	.box.thumb {
+		.call-to-action:not(.registered) {
+			.message { 
+				@include opacity(1);
+				@include transform( translateX(0) ); 
+			}
+			.ficon, .message {
+				color: white;
+			}
+		}
+		.registered { 
+			.message { @include opacity(0); }
+		}
+		.enter 		{ @include bdk-background( darken($blue, 10%) ); }
+		.leave-box 	{ @include bdk-background( darken($red, 10%) ); }
+
+	}
+}

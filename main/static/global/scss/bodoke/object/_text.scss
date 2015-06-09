@@ -1,0 +1,24 @@
+// _text.scss
+
+
+p {
+	font-size: 0.9em;
+	margin-top: 0;
+	margin-bottom: 0.5em;
+}
+
+p {
+	&.lead {
+		margin-bottom: 20px;
+		font-size: 1.2em;
+		font-weight: 200;
+		line-height: 1.4;
+	}
+}
+
+@mixin media-paragraph-landscape {
+	p {
+		font-size: 1em;
+		line-height: 1.6em;
+	}
+}

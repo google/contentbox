@@ -1,0 +1,85 @@
+// _footer.scss
+
+// Variables propias de la seccion
+$footer-stats-height: 			px(3.5em);
+
+// ======================================================================
+.stats {
+	@include clear();
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: $footer-stats-height;
+	z-index: 50;
+	footer {
+		width: 100%;
+		background-color: $blue;
+		border-top: 1px solid $gray-border;
+		line-height: $footer-stats-height;
+		color: $gray-text-color;
+		font-size: 0.8em;
+		.button {
+			margin-left: $col-offset / 2;
+			margin-right: $col-offset / 2;
+		}
+	}
+}
+
+.stats.relative {
+	position: relative;
+	left: auto;
+	bottom: auto;
+	@include row();
+}
+
+.box-detail #global-footer {
+	margin-left: col-width(3,15);
+	width: col-width(12,15);
+}
+
+// Media Queries
+// ======================================================================
+// Mobile
+@mixin media-mobile-footer() {
+	.stats {
+		padding-left: 0;
+		.button {
+			padding-left: $col-offset;
+			padding-right: $col-offset;
+		}
+	}
+	.box-detail #global-footer {
+		margin-left: 0;
+		width: col-width(15,15);
+	}
+}
+
+// 768
+@mixin media-768-footer() {
+	.stats {
+		padding-left: 0;
+		footer {
+			font-size: 1.2em;
+			.button {
+				padding-left: $col-offset;
+				padding-right: $col-offset;
+				margin: 0 ($col-offset / 2);
+			}
+		}
+	}
+	.box-detail #global-footer {
+		width: 100%;
+		margin-left: 0;
+	}
+}
+
+// 1024
+@mixin media-1024-footer() {
+	$media-1024-variable-de-ejemplo:	120px;
+	footer {
+		// Estilos que solo van a funcionar
+		// en resoluciones menores a 1024px;
+		// ESTE MIXIN SE INCLUYE EN 'media/_1024.scss'
+	}
+}

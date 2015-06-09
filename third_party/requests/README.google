@@ -1,0 +1,14 @@
+URL: https://pypi.python.org/pypi/requests/
+Version: 2.7.0
+License:  Apache 2.0
+License File: LICENSE
+
+Description:
+Most existing Python modules for sending HTTP requests are extremely verbose and
+cumbersome. Python’s builtin urllib2 module provides most of the HTTP
+capabilities you should need, but the api is thoroughly broken. It requires an
+enormous amount of work (even method overrides) to perform the simplest of
+tasks.
+
+Local Modifications:
+No Modifications.

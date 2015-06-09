@@ -1,0 +1,84 @@
+<!--Copyright 2015 Google Inc. All Rights Reserved.
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.-->
+
+{% extends 'base.html' %}
+
+{% load i18n %}
+{% load staticfiles %}
+{% load box_thumb %}
+
+{% block title %} - {% trans "Home" %}{% endblock %}
+
+{% block content %}
+
+	<div id="content" class="row">
+
+		<div id="main-side-nav" class="side-nav c3-15 cols">
+			<div class="scrolleable-area row">
+				<!-- Category -->
+
+				<div id="simple-filter" class="c15-15 cols hide-mobile">
+					<h6 class="small title">{% trans "Filter" %}</h6>
+					<ul id="category-list" class="list tags">
+						{% for tag in tags  %}
+							<li class="item tag" onclick="filterBoxes('{{ tag.slug }}', this)">
+								<img class="tag-img item-img" src="{{ tag.icon.url }}" />
+								<span class="tag-name item-name">{{ tag.title }}</span>
+							</li>
+						{% endfor %}
+                        <li id="view-all" class="item tag active" onclick="filterBoxes('', this)">
+                            <i class="ficon fa-eye tag-img"></i>
+        					<span class="tag-name">{% trans "Show all" %}</span>
+                        </li>
+					</ul>
+				</div>
+
+				<!-- Handheld devices Category -->
+				<div id="dropdown-filter" class="dropdown tablet-c10-15 mobile-c12-15 cols" onclick="$(this).toggleClass('open')">
+					<div class="handler">
+						{% trans "Filtrar" %}
+						<i class="ficon fa-caret-down"></i>
+					</div>
+					<ul id="category-list" class="vertical list">
+                        <li id="view-all" class="item tag active" onclick="filterBoxes('', this)">
+                            <i class="ficon fa-eye tag-img"></i>
+        					<span class="tag-name">{% trans "Show all" %}</span>
+                        </li>
+						{% for tag in tags  %}
+							<li class="item tag" onclick="filterBoxes('{{ tag.slug }}', this)">
+								<img class="tag-img item-img" src="{{ tag.icon.url }}" />
+								<span class="tag-name item-name">{{ tag.title }}</span>
+							</li>
+						{% endfor %}
+					</ul>
+				</div>
+
+			</div>
+		</div>
+
+		<ul class="boxes c12-15 offset-3-15 cols">
+            {% for box in boxes %}
+    			{% with registered=box|is_registered:request.user unsuscribe=False %}
+                    {% include "main/box_thumb.html" %}
+                {% endwith %}
+            {% endfor %}
+        </ul>
+
+	</div>
+
+{% endblock %}
+
+{% block js %}
+	<script src="{% static 'main/js/box_preview.js' %}"></script>
+{% endblock %}

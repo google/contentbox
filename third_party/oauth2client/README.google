@@ -1,0 +1,10 @@
+URL: http://github.com/google/oauth2client/
+Version: 1.4.7
+License: Apache 2.0
+License File: LICENSE
+
+Description:
+The oauth2client is a client library for OAuth 2.0.
+
+Local Modifications:
+No Modifications.

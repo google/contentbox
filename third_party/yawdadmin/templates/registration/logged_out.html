@@ -1,0 +1,11 @@
+{% extends "admin/logged_out_base.html" %}{% load i18n %}
+
+{% block bodyclass %}login{% endblock %}
+
+{% block content %}<header class="page-header">
+				<h3>{% trans 'Logout' %}</h3>
+				<p>{% trans "Thanks for spending some quality time with the Web site today." %}</p>
+			</header>
+			<p>
+				<a class="btn btn-primary" href="{% url 'admin:index' %}">{% trans 'Log in again' %}</a>
+			</p>{% endblock %}

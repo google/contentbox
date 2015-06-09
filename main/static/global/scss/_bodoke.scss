@@ -1,0 +1,38 @@
+$bodoke-version:			0.0.5;
+$bodoke-prefix:				'bdk';
+
+// Compass CSS3 Mixins
+@import "compass/css3";
+@import "compass/css3/images";
+
+// Settings & Config
+@import "bodoke/settings/config"; 				// config & variables
+@import "bodoke/settings/mixins";				// mixins
+@import "bodoke/settings/functions";			// functions
+@import "bodoke/settings/fonts"; 				// fonts
+@import "bodoke/settings/colors"; 				// colors
+@import "bodoke/grid/grid";						// grid framework
+
+// Elements
+@import "bodoke/object/buttons";
+// @import 'bodoke/object/buttons-google';	 	// GOOGLE BUTTONS
+@import "bodoke/object/icons";
+
+@import "bodoke/object/animations";
+@import "bodoke/object/titles";
+@import "bodoke/object/text";
+@import "bodoke/object/menu";
+@import "bodoke/object/list";
+@import "bodoke/object/input";
+// @import "bodoke/object/tooltip";
+@import "bodoke/object/dropdown";
+@import "bodoke/object/table";
+// @import "bodoke/object/lightbox";
+@import "bodoke/object/slider";
+// @import "bodoke/object/slide-detail";
+// @import "bodoke/object/code";
+@import "bodoke/object/lang-dropdown.scss";
+// @import "bodoke/object/bodoke-example"; 		// Comentar antes de empezar un proyecto
+
+// css helpers
+@import "bodoke/settings/helpers"; 				

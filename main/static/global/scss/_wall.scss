@@ -1,0 +1,130 @@
+// _wall.scss
+
+$wall-top-offset:	$header-height + px($col-offset / 2);
+// $wall-top-offset:	$header-height;
+
+
+// ======================
+// WALL BOXES
+// ======================
+#my-boxes {
+	.box.thumb {}
+}
+
+#content.wall {
+	.header-title {
+		position: absolute;
+		z-index: 100;
+		margin-bottom: 0;
+		background-color: lighten($color-1, 25%);
+		// background-color: $color-2;
+		.inner-header {
+			padding-left: $logo-left-margin;
+		}
+		.title, .summary {
+			padding-left: 0;
+		}
+	}
+	.boxes {
+		padding-top: $wall-top-offset;
+		min-height: 100%;
+		height: auto;
+	}
+	.box.thumb {
+	}
+	footer.stats {
+		position: relative;
+	}
+}
+
+
+
+#user-header {
+	.header.large {
+		background-color: $dark-blue;
+		&, .summary, .ficon {
+			color: $white;
+		}
+	}
+	#options {
+		.item {
+			&.option-button {
+				&:hover {
+					background-color: white(0.1);
+				}				
+			}
+			.link {
+				color: $white;
+			}
+		}
+	}
+}
+
+
+// ============================
+// NO BOXES MESSAGE
+// ============================
+.center-box {
+	width: 480px;
+	height: 200px;
+	padding: ($col-offset * 1.5) ($col-offset * 2);
+	background-color: $white;
+	@include a-center;
+	@include box-shadow( 0 1px 1px 0 black(0.2) );
+	.ficon {
+		font-style: 3em;
+		color: $yellow;
+	}
+	.message {
+		font-size: 2.25em;
+		font-weight: 300;
+	}
+}
+
+
+
+// ============================
+// MEDIA QUEIRES
+// ============================
+// Mobile
+@mixin media-mobile-wall() {
+	#content.wall {
+		padding-top: $header-height;
+		.header-title {
+			position: relative;
+			.inner-header {
+				padding-left: $col-offset;
+				padding-right: $col-offset;
+			}
+		}
+		.boxes {
+			padding-top: 0;
+		}
+	}
+}
+// 768
+@mixin media-768-wall() {
+	#content.wall {
+		.header-title {
+			.inner-header {
+				padding-left: $col-offset;
+			}
+		}
+	}
+}
+
+// 1024
+@mixin media-1024-wall() {
+	#content.wall {
+		.header-title {
+			.inner-header {
+				padding-left: $col-offset;
+			}
+		}
+	}
+
+}
+
+// 1024 tablet
+@mixin media-1024_tablet-wall() {
+}

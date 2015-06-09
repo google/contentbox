@@ -1,0 +1,10 @@
+URL: https://bitbucket.org/twanschik/django-autoload
+Version: 0.01
+License: BSD License
+License File: LICENSE
+
+Description:
+Ensures loading of specified app modules
+
+Local Modifications:
+No Modifications.

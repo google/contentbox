@@ -1,0 +1,206 @@
+// _search.scss
+
+// =====================
+// BUSCADOR
+// =====================
+#search {
+	float: left;
+	margin-left: 0;
+	// width: 50%;
+	padding-left: $box-thumb-margin * 2;
+	.form {
+		display: block;
+		width: 100%;
+		position: relative;
+		float: right;
+		@include clear();
+		color: $header-item-color;
+	}
+	.input-search {
+		@include header-option-height();
+		width: 100%;
+		padding-right: $header-option-size;
+		// line-height: $header-option-size / 1.5;
+		line-height: 1;
+		font-size: $header-option-size / 3;
+		border: none;
+		@include border-radius( 0 );
+		@include bdk-background(black, 0.05);
+		@include transition( background $transition-speed ease );
+		&:focus {
+			@include bdk-background(black, 0.1);			
+		}
+		@include placeholder {
+			color: white(0.6);
+			// color: black(0.4);
+		}
+	}
+	.option-button {
+		height: $header-option-size;
+		width: 3em;
+		position: absolute;
+		top: $header-top;
+		right: 0;
+		background: none;
+		border: none;
+		line-height: $header-option-size;
+		text-align: center;
+		@include transition( opacity $transition-speed ease );
+	}
+	.input-search, .option-button {
+		&, & .ficon {
+			color: inherit;
+		}
+	}
+	.button-search 			{ @include opacity(1); }
+	.button-advanced-search { @include opacity(0); }
+	&:hover {
+		.button-search 			{ @include opacity(0); }
+		.button-advanced-search { @include opacity(1); }
+	}
+}	
+
+
+
+// =====================
+// AUTOCOMPLETE
+// =====================
+span.page-nav-current {
+  color: black;
+  font-weight: bold;
+}
+
+span.page-nav {
+  color: gray;
+}
+
+.page-nav, .page-nav-current {
+  margin: 0 3px;
+}
+
+.ac_results {
+	padding: 0px;
+	border: 1px solid $gray-border;
+	background-color: $white;
+	overflow: hidden;
+	z-index: 99999;
+	ul {
+		width: 100%;
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		color: $text-color;
+	}
+	// =========
+	// Items
+	// =========
+	li, .ac-special-result {
+		margin: 0px;
+		padding-top: $col-offset;
+		padding-bottom: $col-offset;
+		padding-left: $col-offset * 1.5;
+		padding-right: $col-offset * 1.5;
+		display: block;
+		// if width will be 100% horizontal scrollbar will apear 
+		// when scroll mode will be used
+		width: 100%;
+		// it is very important, if line-height not setted or setted 
+		// in relative units scroll will be broken in firefox
+		line-height: 1;
+		overflow: hidden;
+		color: inherit;
+		@include transition( background $transition-speed ease );
+		@include text-shadow( 0 1px 0 white(0.8) );
+	}
+	// ===================================
+	// Resultados de la busqueda
+	// ===================================
+	li {
+		line-height: 1.3em;
+		cursor: pointer;		 
+		background-color: gray(249);
+		border-top: 1px solid $gray-border;
+		&:hover, &.ac_over {
+			background-color: gray(235);
+			.selected-arrow {
+				@include opacity(1);
+			}
+		}
+		&:first-child 	{ border-top: none; }
+		&:last-child 	{}
+		&.ac_odd 		{}
+		&.ac_over 		{
+			background-color: gray(240);			
+		}
+		.selected-arrow {
+			@include opacity(0);
+			@include transition( opacity $transition-speed ease );
+			position: relative;
+			display: block;
+			float: right;
+			font-size: 1.5em;
+			margin-top: -0.25em;
+			margin-bottom: -0.25em;
+		}
+		img {
+			width: ($col-offset * 1.5);
+			height: $col-offset;
+		}
+	}
+	.ac-special-result {
+		background-color: white;
+		// "Type to see suggestions"
+		&.help_text {
+			text-align: center;
+			color: $gray-dark;
+		}
+		// Loading
+		&.ac_loading {
+			padding: 0;
+		} 
+	}
+	.dropdown {
+		border: 1px solid lightgray;
+		border-top-color: gray; 
+	}
+	
+}
+
+
+// ========================
+// MEDIA QUERIES
+// ========================
+// Mobile
+@mixin media-mobile-search {
+	.item {
+		margin-right: 0;
+		margin-bottom: 0;
+		float: none;
+	}
+	.input-search {
+		width: 100%;
+	}
+	#search {
+		width: col-width(9,15);
+		.button-search 			{ @include opacity(0); }
+		.button-advanced-search { @include opacity(1); }		
+	}
+}
+// 800
+@mixin media-800-search {
+	#search {
+		// width: 66.66667%;
+		width: col-width(4 , 15);
+	}
+}
+// 1024
+@mixin media-1024-search {
+	#search {
+		// width: 30%;
+		width: 40%;
+	}
+}
+// 1320
+@include screen(1320px) {
+	#search { width: 39%; }
+}

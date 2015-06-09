@@ -1,0 +1,236 @@
+// _box-detail.scss
+
+
+// =========================
+// ARCHIVOS DEL BOX (DRIVE)
+// =========================
+#box-files {
+	margin-bottom: $col-offset;
+	table {
+		width: 100%;
+		text-align: left;
+		thead {
+			th {
+				text-transform: none;
+				color: $gray-dark;				
+			}
+		}
+		hr {
+			background-color: $gray-border;
+		}
+	}
+	.ficon {
+		color: $gray-dark;
+	}
+}
+
+
+
+// =========================
+// DETALLE DEL BOX
+// =========================
+#detail {
+	position: relative;
+	height: 100%;
+	iframe {
+		margin: 0;
+		border: 0;
+	}
+	.box-video-slider {
+	}
+	.box-video-title {
+		background-color: $blue;
+		padding: $col-offset ($col-offset * 1.5);
+		padding-right: $col-offset * 2;
+		padding-left: $col-offset * 2;
+		.title {
+			font-size: 1.6em;
+			line-height: 1.8em;
+			font-weight: 300;
+			margin-bottom: 0;
+		}
+	}
+}
+
+
+// =========================
+// VIDEO DEL BOX 16:9
+// =========================
+##{$bodoke-prefix}-slider {
+	background-color: #222222;
+	.slider-arrow {
+		bottom: 14%;
+	}
+	.box-video {
+		position: relative;
+		// max-width: 720px;
+		margin-left: auto;
+		margin-right: auto;	
+	}
+}
+.box-video {
+	@include aspect-ratio( calculate-ratio(16,9), 'iframe');
+}
+
+
+// =========================
+// INSTRUCTOR DEL BOX
+// =========================
+$instructor-pic-size:	120px;
+$instructor-offset: 	$instructor-pic-size + px($col-offset);
+
+#instructor {
+	// margin-bottom: 4em;
+	.info {
+		position: relative;
+		padding-top: $col-offset * 1.5;
+		padding-bottom: $col-offset * 1.5;
+		padding-right: $col-offset * 2;
+		padding-left: $col-offset * 2;
+		margin-bottom: 0;
+	}
+	.instructor-profile {
+		position: relative;
+		// width: $instructor-pic-size;
+		width: 14%;
+		float: left;
+		text-align: center;
+		margin-bottom: 0;
+		padding-right: $col-offset / 2;
+		.pic {
+			display: block;
+			width: 100%;
+			// height: $instructor-pic-size;
+			margin-bottom: $col-offset;
+			border: 1px solid $color-2;
+			@include border-radius(50%);
+			@include box-shadow( 0 1px 1px 0 black(0.2) );
+		}
+		.name {
+			font-weight: 600;
+			font-size: 1.2em;
+			margin-bottom: 0;
+		}
+		.summary {
+			font-size: 0.9em;
+		}
+	}
+	.instructor-content {
+		position: relative;
+		width: 86%;
+		float: left;
+	}
+	.tags {
+		position: relative;
+		margin-bottom: $col-offset;
+		padding-bottom: $col-offset / 2;
+		border-bottom: 1px solid $gray-border;
+		@include clear();
+	}
+	.instructor-links {
+		padding-top: $col-offset / 2;
+		margin-top: $col-offset;
+		border-top: 1px solid $gray-border;
+		.item {
+			position: relative;
+			padding: 3px 6px;
+			font-size: 0.9em;
+			background-color: $color-2;
+			margin-right: $col-offset / 3;
+			a { color: $white; }
+		}
+	}
+	p {
+		font-size: 0.9em;
+		line-height: 1.8em;
+		a {
+			font-weight: 600;
+		}
+	}
+}
+
+
+.box.detail {
+	
+}
+
+
+// ==================
+// MEDIA QUERIES
+// ==================
+// Mobile
+@mixin media-mobile-box-detail {
+	##{$bodoke-prefix}-slider {
+		margin-bottom: $col-offset * 2;
+	}
+
+	#instructor {
+		.instructor-profile,
+		.instructor-content {
+			float: none;
+		}
+		.instructor-profile {
+			width: 100%;
+			margin-bottom: $col-offset;
+			.pic {
+				width: 50%;
+				margin-left: auto;
+				margin-right: auto;
+			}
+		}
+		.instructor-content {
+			width: 100%;
+			margin-left: auto;
+			margin-right: auto;
+			text-align: center;
+		}
+		.info {
+			padding-right: $col-offset;
+			padding-left: $col-offset;
+		}
+	}
+}
+
+// 768
+@mixin media-768-box-detail {
+	#detail {
+		// padding-top: $header-height;
+		padding-top: 0;
+	}
+	#instructor {
+		.instructor-profile,
+		.instructor-content {
+			// float: none;
+		}
+		.instructor-profile {
+			// width: 100%;
+			margin-bottom: $col-offset;
+			.pic {
+				width: 90%;
+				margin-left: auto;
+				margin-right: auto;
+			}
+		}
+		.instructor-content {
+			margin-left: auto;
+			margin-right: auto;
+			text-align: center;
+		}
+	}	
+}
+
+// 1024
+@mixin media-1024-detail() {
+	#detail {
+		width: col-width(12,15);
+		margin-left: col-width(3, 15);
+	}
+}
+
+// TABLET 1024
+@mixin media-1024_tablet-detail() {
+	#detail {
+		width: col-width(12,15);
+		margin-left: col-width(3, 15);
+	}
+}

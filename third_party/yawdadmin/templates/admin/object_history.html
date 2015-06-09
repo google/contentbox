@@ -1,0 +1,40 @@
+{% extends "admin/base_site.html" %}{% load i18n admin_urls yawdadmin_tags %}
+
+{% block inner-title %}{% trans 'History' %} < {{object}} < {{ opts.verbose_name_plural|capfirst }}{% endblock %}
+
+{% block content_title %}{% if title %}
+			<header class="page-header">
+				<h1><i class="{% get_object_icon object 'icon-pencil' %} title-icon"></i>{{object}}: {% trans 'history' %}</h1>
+			</header>{% endif %}{% endblock %}
+
+{% block breadcrumbs %}
+		<ul class="breadcrumb">
+			<li><a href="{% url 'admin:index' %}"><i class="icon-home"></i></a> <span class="divider">/</span></li>{% if not ADMIN_DISABLE_APP_INDEX %}
+			<li><a href="{% url 'admin:app_list' app_label=app_label %}">{{ app_label|capfirst }}</a> <span class="divider">/</span></li>{% endif %}
+			<li><a href="{% url opts|admin_urlname:'changelist' %}">{{ module_name }}</a> <span class="divider">/</span></li>
+			<li><a href="{% url opts|admin_urlname:'change' object.pk|admin_urlquote %}">{{ object|truncatewords:"18" }}</a> <span class="divider">/</span></li>
+			<li class="active">{% trans 'History' %}</li>
+		</ul>{% endblock %}
+
+{% block content %}
+			<div id="content-main">
+				<div class="module">{% if action_list %}
+					<table id="change-history" class="table table-bordered table-striped">
+						<thead>
+							<tr class="grey-degrade">
+								<th scope="col">{% trans 'Date/time' %}</th>
+								<th scope="col">{% trans 'User' %}</th>
+								<th scope="col">{% trans 'Action' %}</th>
+							</tr>
+						</thead>
+						<tbody>{% for action in action_list %}
+							<tr>
+								<th scope="row">{{ action.action_time|date:"DATETIME_FORMAT" }}</th>
+								<td>{{ action.user.username }}{% if action.user.get_full_name %} ({{ action.user.get_full_name }}){% endif %}</td>
+								<td>{{ action.change_message }}</td>
+							</tr>{% endfor %}
+						</tbody>
+					</table>{% else %}
+					<div class="alert">{% trans "This object doesn't have a change history. It probably wasn't added via this admin site." %}</div>{% endif %}
+				</div>
+			</div>{% endblock %}

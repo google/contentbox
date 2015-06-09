@@ -1,0 +1,11 @@
+URL: https://github.com/summernote/django-summernote
+Version: 4 - Beta
+License: MIT license
+License File: LICENSE
+
+Description:
+django-summernote allows you to embed Summernote into Django very handy. Support
+admin mixins and widgets.
+
+Local Modifications:
+No Modifications.

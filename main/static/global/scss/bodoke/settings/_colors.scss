@@ -1,0 +1,196 @@
+// colors.scss
+
+// ======================
+// COLORS
+// ======================
+// Borde Gris 			- #D2D2D2
+// Borde Gris Claro		- #ECECEC
+// Celeste oscuro		- #5093CC
+// Celeste 				- #69afeb
+// Rojo 				- #dd4a3a
+// Amarillo 			- #fcb608
+// Verde 				- #00a25f
+
+
+
+// ======================
+// GRAYSCALE
+// ======================
+$black_15:			gray(38);
+$black_20:			hsl(0, 0, 20%); // dark-gray
+$black_27:			hsl(0, 0, 27%); // #444
+$black_60:			hsl(0, 0, 60%);
+$black_65:			hsl(0, 0, 65%); // gray
+$black_82:			hsl(0, 0, 82%); // light-gray
+$black_90:			hsl(0, 0, 90%);
+$black_95:			gray(242);
+$black_97:			gray(247);
+
+// $white:				hsl(0, 0, 98%);	// #FAFAFA;
+$white:				gray(241);// #F1F1F1;
+
+$gray:				$black_95;
+// $gray-border:		rgb(200, 205, 209); // #c8cdd1;
+$gray-border:		gray(210); // #D2D2D2;
+$gray-dark:			gray(130); // hsl(0, 0, 40%);
+
+// ======================
+// HOT COLORS
+// ======================
+$red: 				#dd4a3a;
+$yellow: 			#fcb608;
+$orange:			#ff9900;
+
+
+// ======================
+// COLD COLORS
+// ======================
+
+// Azules
+$light-blue:		rgb(85, 160, 207);	// #55a0cf;
+$blue:				rgb(228, 237, 246);
+$navy-blue:			rgb(16, 121, 187);	// La Caja
+$dark-blue:			rgb(55, 71, 125);
+// Azul verdoso, Cyanes, turquesas
+$cyan: 				#69afeb;
+$pale-blue:			rgb(7, 163, 170);	// #07A3AA
+$turquesa:			rgb(78, 207, 226);	// #4ECFE2
+// Verde
+$google-green: 		#639728;			// #649827;
+$green:				#6FC975;
+
+// Google Colors
+$google-gray:		$gray;				//
+$google-blue:		#2362ff;			//
+$google-red: 		rgb(211,72,54);		// #D34836;
+$google-yellow:		$yellow;			//
+$google-green: 		#00a25f;			//
+
+
+// ======================
+// FULL COLOR PALLETE
+// ======================
+// (class, color)
+$color-pallete:	(
+	('white', 		$gray), 
+	('yellow', 		$google-yellow), 
+	('blue', 		$blue),
+	('red', 		$google-red),
+	('green', 		$green),
+	('pale-blue', 	$pale-blue),
+	('light-gray', 	#fafafa),
+	('gray', 		$google-gray),
+	('dark-gray', 	$gray-dark)
+);
+// Background Colors
+@each $color in $color-pallete {
+	.#{nth($color, 1)} {
+		background-color: nth($color, 2);					
+	}
+}
+// Text Colors
+@each $color in $color-pallete {
+	.#{nth($color, 1)}-text {
+		color: nth($color, 2);				
+	}
+	a.#{nth($color, 1)}-text {
+		color: nth($color, 2);
+		&:hover {
+			color: darken( nth( $color, 2), 15%);
+		}
+	}
+}
+
+// ======================
+// BUTTON COLOR PALLETE
+// ======================
+// (class, color)
+$buttons-color-pallete:	(
+	('yellow', 		$google-yellow), 
+	('blue', 		$light-blue),
+	('red', 		$google-red),
+	('green', 		$green),
+	('gray', 		$google-gray),
+	('black', 		black(0.1) )
+);
+
+
+// ======================
+// TITLES COLOR PALLETE
+// ======================
+// (class, color)
+$titles-color-pallete:	(
+	('yellow', 		$google-yellow), 
+	('blue', 		$blue),
+	('red', 		$google-red),
+	('green', 		$green),
+	('gray', 		$google-gray)
+);
+
+
+// ======================
+// TABLES COLOR PALLETE
+// ======================
+// (class, color)
+$tables-color-pallete:	(
+	('yellow', 		$google-yellow), 
+	('blue', 		$blue),
+	('red', 		$google-red),
+	('green', 		$green),
+	('gray', 		$google-gray)
+);
+
+
+// ======================
+// ALERTAS
+// ======================
+$alerts-color-pallete: (
+	('warning', $red),
+	('alert', $yellow),
+	('success', $google-green)
+);
+
+
+
+// ======================
+// TEXTOS
+// ======================
+// Texto Negro 			- #3B3B3B
+// Texto Negro 			- #444
+// Texto Gris 			- #91959C
+$text-color:			#808080;
+$gray-text-color:		#b3bac1;
+
+
+
+
+// ==============================
+// COLORES GENERALES APLICADOS
+// ==============================
+// #36579E
+$color-1:	#4285F4;			// Primer color corporativo 
+$color-2:	#72D7E8; //#00c3e3;  			// Segundo color corporativo
+$color-3:	$black_20; 			// Color del texto
+$ui-1:		#34495E;
+
+* {
+	color: $color-3;
+}
+// Links
+a { 
+	color: $color-2;
+	text-decoration: none;
+	&:hover {
+		color: lighten( $color-2, 5% );
+	}
+}
+// Reglas horizontales
+hr { 
+	background-color: $color-2;
+}
+// Seleccion con el cursor
+::-moz-selection, ::selection {
+	background: $color-2;
+	color: #FFF;
+	text-shadow: 1px solid black(0.2);
+}

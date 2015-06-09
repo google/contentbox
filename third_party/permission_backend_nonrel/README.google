@@ -1,0 +1,11 @@
+URL: https://github.com/django-nonrel/django-permission-backend-nonrel
+Version: 0.2
+License:
+License File: LICENSE
+
+Description:
+A Django authentication backend that supports Django’s user and group
+permissions on Django-Nonrel
+
+Local Modifications:
+No Modifications.

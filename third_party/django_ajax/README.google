@@ -1,0 +1,11 @@
+URL: https://github.com/yceruto/django-ajax
+Version: 2.2.15
+License: MIT License
+License File: LICENSE
+
+Description:
+Fast and easy AJAX libraries for django projects. Contains AJAX decorator, AJAX
+middleware, shortcuts and more.
+
+Local Modifications:
+No Modifications.

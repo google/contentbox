@@ -1,0 +1,75 @@
+// _user-data.scss
+
+// =================
+// DATA DEL USUARIO
+// =================
+#user-data {
+	$profile-data-line-height: 1.4em;
+	position: relative;
+
+	.profile-image, .profile-container {
+		float: left;
+	}
+	.profile-container {
+		margin-right: $col-offset / 2;
+		padding-left: $col-offset;
+		border-left: 1px solid black(0.1);
+		line-height: $profile-data-line-height * 2;
+		// margin-top: round(em($header-option-size) - ( $profile-data-line-height * 2 )) / 2;
+		margin-top: 0.3em;
+		text-align: right;
+		.profile-email, .profile-logout {
+			float: none;
+			display: block;
+			line-height: $profile-data-line-height;
+			font-size: 0.85em;
+			font-weight: 300;
+			color: $header-item-color;
+		}
+		.profile-email {
+			font-weight: 600;
+			@include truncate-line();
+			max-width: 60px;
+		}
+		.profile-logout {
+			&:hover {
+				text-decoration: underline;
+			}
+		}		
+	}
+	.profile-image {
+		display: block;
+		position: relative;
+		width: $header-option-size;
+		height: $header-option-size;
+		margin-left: $col-offset / 3;
+		border: 2px solid transparent;
+		@include border-radius( 100% );
+		overflow: hidden; // iPad 2 bug
+		@include transition( border $transition-speed ease );
+	}
+	&:hover {
+		.item-link {
+			background: none!important;			
+		}
+		.profile-image {
+			border-color: $header-item-color-hover;
+		}
+	}
+}
+
+
+// ========================
+// MEDIA QUERIES
+// ========================
+// 768
+@mixin media-768-userdata() {
+	#user-data {
+		.profile-container {
+			.profile-email {
+				// Desactiva el truncate line
+				@include truncate-line(false);
+			}
+		}
+	}
+}

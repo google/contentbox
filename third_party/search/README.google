@@ -1,0 +1,11 @@
+URL: https://bitbucket.org/twanschik/nonrel-search/
+Version: 0.1
+License: BSD License
+License File: LICENSE
+
+Description:
+A simple search engine for non-relational databases. Supports stemming and
+search-as-you-type.
+
+Local Modifications:
+No Modifications.

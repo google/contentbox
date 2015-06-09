@@ -1,0 +1,10 @@
+URL: https://github.com/requests/requests-oauthlib
+Version: 0.5.0
+License:
+License File: LICENSE
+
+Description:
+This project provides first-class OAuth library support for Requests.
+
+Local Modifications:
+No Modifications.

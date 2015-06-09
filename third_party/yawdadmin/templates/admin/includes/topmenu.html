@@ -1,0 +1,83 @@
+{% load i18n yawdadmin_filters yawdadmin_tags %}
+{% get_admin_site_meta %}
+<div class="navbar-blue navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container-fluid">
+					<a class="brand" href="{{homeurl}}">
+						<i class="icon-globe icon-white"></i> {{ ADMIN_SITE_NAME }}
+					</a>
+					<nav id="logged-user-menu">
+						<ul class="nav pull-right">{% if langs and langs|length > 1 %}
+							<li class="divider-vertical hidden-phone hidden-tablet"></li>
+							<li class="dropdown">
+								<a data-toggle="dropdown" class="dropdown-toggle lang-switcher" href="#">{% for lang in langs %}{% if lang.name == LANGUAGE_CODE %}{% get_language_info for lang.name as info %}{% if lang.image %}
+									<img src="{{lang.image.url}}" alt="{{info.name}}" title="{{info.name}}" />{% else %}
+									{{info.name}}{% endif %}{% endif %}{% endfor %}{% if langs and langs|length > 1 %}
+									<b class="caret"></b>{% endif %}
+								</a>{% if langs and langs|length > 1 %}
+								<ul class="dropdown-menu pull-left">{% for lang in langs %}{% if lang.name != LANGUAGE_CODE %}
+									<li>{% get_language_info for lang.name as info %}
+										<a href="{% if not lang.default %}/{{info.code}}{% endif %}{{clean_url}}">{% if lang.image %}
+											<img src="{{lang.image.url}}" alt="{{info.name}}" title="{{info.name}}" /> {% endif %}
+											{{info.name}}
+										</a>
+									</li>{% endif %}{% endfor %}
+								</ul>{% endif %}
+							</li>{% endif %}
+							<li class="divider-vertical hidden-phone hidden-tablet"></li>
+							<li class="dropdown">
+								<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+									<i class="icon-user icon-white"></i>&#xa0;{% filter force_escape %}{% firstof user.first_name user.username %}{% endfilter %}
+									<b class="caret"></b>
+								</a>
+								<ul class="dropdown-menu">{% block userlinks %}{% if analytics %}
+									<li>
+										<a id="ga-configuration-link" href="{% url 'admin:analytics' %}">{% trans 'Configure Google Analytics' %}</a>
+									</li>
+									<li class="divider"></li>{% endif %}{% url 'django-admindocs-docroot' as docsroot %}{% if docsroot %}
+									<li>
+										<a id="documentation-link" href="{{ docsroot }}">{% trans 'Documentation' %}</a>
+									</li>{% endif %}
+									<li>
+										<a id="my-account-link" href="{% url 'admin:my-account' %}">{% trans 'My Account' %}</a>
+									</li>{% if user.has_usable_password %}
+									<li>
+										<a id="change-password-link" href="{% url 'admin:password_change' %}">{% trans 'Change Password' %}</a>
+									</li>{% endif %}<li class="divider"></li>{% url 'admin:logout' as logout_url %}
+									<li>
+										<a id="logout-link" href="{% if logout_url %}{{ logout_url }}{% else %}{{ homeurl }}logout/{% endif %}">{% trans 'Logout' %}</a>
+									</li>{% endblock %}
+								</ul>
+							</li>
+						</ul>
+					</nav>
+					<a data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar">
+						<span class="icon-align-justify icon-white"></span>
+					</a>
+					<nav class="nav-collapse collapse">
+						<ul class="nav">{% for app in top_menu %}
+							<li class="dropdown">
+								<a data-toggle="dropdown" class="dropdown-toggle" href="#">{% if app.icon %}
+									<i class="{{app.icon}} icon-white"></i>
+									{% endif %}&#xa0;{{app.name|app_title}}
+									<b class="caret"></b>
+								</a>
+								<ul class="dropdown-menu">{% for model in app.models %}{% if model.show %}{% if model.separator %}
+									<li class="divider"></li>{% endif %}
+									<li><a href="{{model.admin_url}}">{% if model.title_icon %}<i class="{{model.title_icon}}"></i> {% endif %}{{model.name}}</a></li>{% endif %}{% endfor %}
+								</ul>
+							</li>{% endfor %}{% if optionset_labels and perms.yawdadmin.change_appoption %}
+							<li class="dropdown">
+								<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+									<i class="icon-cog  icon-white"></i>&#xa0;{% trans "Options" %}
+									<b class="caret"></b>
+								</a>
+								<ul class="dropdown-menu">{% for label in optionset_labels %}
+									<li><a href="{{label.url}}">{{label.optionset_label}}</a></li>{% endfor %}
+								</ul>
+							</li>{% endif %}
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>

@@ -1,0 +1,33 @@
+// _menu.scss
+
+nav {
+	ul, ol {
+		list-style: none;
+		list-style-type: none;
+		list-style-image: none;
+		padding: 0;
+		margin: 0;
+	}
+}
+
+.menu {
+	position: relative;
+	display: block;
+	// width: 100%;
+	padding: 0;
+	margin:0;
+	list-style-type: none;
+	list-style-image: none;
+	ul, ol, nav {
+		margin: 0; padding: 0;
+	}
+	// Position
+	&.fixed 	{ position: fixed; }
+	&.absolute	{ position: absolute; }			
+	&.static	{ position: static; }			
+	// Coordinates
+	&.top 		{ top: 0; }
+	&.left 		{ left: 0; }
+	&.bottom 	{ bottom: 0; }
+	&.right 	{ right: 0; }
+}

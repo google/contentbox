@@ -1,0 +1,153 @@
+// _subheader.scss
+
+// ======================
+// TITULO DE LA SECCION
+// ======================
+.header-title {
+	position: relative;
+	color: $text-color;
+	padding-top: $col-offset;
+	padding-bottom: $col-offset;
+	margin-bottom: $col-offset;
+	// top: 0;
+	background-color: desaturate( lighten($color-1, 45%), 5% );
+	@include clear();
+	.title, .summary {
+		// padding-left: $box-thumb-margin;
+		padding-left: $col-offset / 2;
+		@include text-shadow( 0 1px 0 white(0.7) );
+	}
+	.title {
+		font-size: 2em;
+		margin-top: 0;
+		margin-bottom: 0;
+		color: inherit;
+		margin-bottom: 5px;
+	}
+	.summary {
+		font-size: 1em;
+		text-indent: 3px;
+		color: inherit;
+		@include opacity(0.6);
+		@include truncate-line;
+	}
+}
+
+.header-title-detail {
+	@include clear();
+	position: relative;
+	color: $gray;
+	padding-top: 0;
+	padding-bottom: 0;
+	background-color: white;
+	.title {
+		font-size: 1.6em;
+		margin-top: $col-offset / 2;
+		padding-left: $col-offset / 2;
+		padding-right: $col-offset / 2;
+		@include max-lines( 3, 1.2em, true );
+	}
+	.back-button {
+		font-size: 2.3em;
+		font-weight: 300;
+		line-height: $col-offset * 3;
+		padding-left: 0;
+		padding-right: 0;
+		text-align: center;
+		background-color: darken($color-1, 10%);
+		color: $white;			
+		.ficon {}
+		* {
+			color: inherit;
+		}
+	}
+	.title, .description {
+		line-height: 1.2em;
+	}
+}
+
+.table-block {
+	position: relative;
+	width: 100%;
+	display: table;
+	.title, .back-button {
+		display: table-cell;
+		float: none;
+	}
+	.title {
+		vertical-align: middle;
+		margin: 0;
+	}
+	// @include vertical-align-middle('.title, .back-button');
+
+}
+
+
+
+// ==============================
+// BOX QUE AUN NO FUE PUBLICADO
+// ==============================
+#not-published {
+	width: 100%;
+	line-height: $header-height;
+	font-size: 1.2em;
+	@include text-shadow(0 1px 0 white(0.8) );
+	background-color: lighten($google-yellow, 30%);
+	p {
+		margin: 0;		
+	}
+}
+
+
+
+// ========================
+// MEDIA QUERIES
+// ========================
+// Mobile
+@mixin media-mobile-subheader() {
+	.header-title-detail {
+		.title {
+			font-size: 1.1em;
+			padding-top: $col-offset / 2;
+			padding-bottom: $col-offset / 2;
+		}
+		.back-button {
+			line-height: 44px;
+			font-size: 1.5em;
+			span {
+				display: none!important;
+			}
+		}
+		.title, .summary {
+			padding-left: $col-offset / 2.25;
+			padding-right: $col-offset / 2.25;
+		}
+	}
+}
+
+// 768
+@mixin media-768-subheader() {
+	.header-title-detail {
+		.title {
+			padding-left: $col-offset;
+			padding-right: $col-offset;
+		}
+		.back-button {
+
+		}
+	}
+}
+
+// TABLET 1024
+@mixin media-1024_tablet-subheader() {
+	.header-title-detail {
+		.back-button, .title {
+			width: 100%;
+		}
+		.title {
+			padding-left: $col-offset * 2;
+			padding-right: $col-offset * 2;
+			padding-top: $col-offset * 1.5;
+		}
+	}
+}
