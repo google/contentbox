@@ -59,10 +59,5 @@ and API key from the previous step and save.
 * Go back to the datastore viewer, select the entity kind auth_user, edit your user and make you admin checking 
 “is staff” and “is superuser” and saving. Now you can access the admin site in [http://localhost:8080/admin](http://localhost:8080/admin).
 
-### Web dependecies (optional - vendor folder location)
-* blueimp [https://github.com/blueimp/Gallery/](https://github.com/blueimp/Gallery/)
-* modernizr [http://modernizr.com/](http://modernizr.com/), used and tested:2.6.2
-* jquery [https://jquery.com](https://jquery.com), used and tested:1.11.0 
-Into the base.html file (into templates), you need change the web dependencies path.
-
+More details about the project and support [http://google.github.io/contentbox/](http://google.github.io/contentbox/)
 You can visit this website [www.contentbox.info](www.contentbox.info) for more installation details
