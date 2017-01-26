@@ -60,4 +60,4 @@ and API key from the previous step and save.
 “is staff” and “is superuser” and saving. Now you can access the admin site in [http://localhost:8080/admin](http://localhost:8080/admin).
 
 More details about the project and support [http://google.github.io/contentbox/](http://google.github.io/contentbox/)
-You can visit this website [www.contentbox.info](http://www.contentbox.info) for more installation details
+You can visit this website [contentbox.info](https://sites.google.com/site/contentboxcommunity/) for more installation details
