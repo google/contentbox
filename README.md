@@ -1,7 +1,7 @@
 ContentBox
 ==========
 
-Open Scalable Content Deliver project
+Open Scalable Content Delivery project
 
 # Project general objective
 
@@ -40,11 +40,13 @@ Manage (feature options)
 
 # Prototype
 [Testing Portal](https://scalable-content-delivery-test.appspot.com/)
-You can validate the model using this test portal. (remember that this website is into a test instance)
+You can validate the model using this test portal. (Remember that this website is into a test instance)
 
 # Dependencies
 
+```bash
 pip install -r requirements.txt -t third_party/
+```
 
 # Install config
 
@@ -56,8 +58,8 @@ pip install -r requirements.txt -t third_party/
 viewer. Select the entity kind config_siteconfiguration edit the entity listed, copy the client id, client secret, 
 and API key from the previous step and save.
 * Go back to [http://localhost:8080/](http://localhost:8080/) and sign in.
-* Go back to the datastore viewer, select the entity kind auth_user, edit your user and make you admin checking 
-“is staff” and “is superuser” and saving. Now you can access the admin site in [http://localhost:8080/admin](http://localhost:8080/admin).
+* Go back to the datastore viewer, select the entity kind `auth_user`, edit your user and make yourself admin by checking 
+`is staff` and `is superuser` and saving. Now you can access the admin site in [http://localhost:8080/admin](http://localhost:8080/admin).
 
 More details about the project and support [http://google.github.io/contentbox/](http://google.github.io/contentbox/)
 You can visit this website [contentbox.info](https://sites.google.com/site/contentboxcommunity/) for more installation details
