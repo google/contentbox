@@ -73,7 +73,7 @@ class ProxyResolver(object):
         """
         # FIXME: No test coverage!
         services = []
-        # Make a seperate request to the proxy resolver for each service
+        # Make a separate request to the proxy resolver for each service
         # type, as, if it is following Refs, it could return a different
         # XRDS for each.
 

@@ -530,7 +530,7 @@ class MediaIoBaseDownload(object):
 
     Raises:
       apiclient.errors.HttpError if the response was not a 2xx.
-      httplib2.HttpLib2Error if a transport error has occured.
+      httplib2.HttpLib2Error if a transport error has occurred.
     """
     headers = {
         'range': 'bytes=%d-%d' % (
