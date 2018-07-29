@@ -107,7 +107,7 @@ class InvalidNotificationError(Error):
   pass
 
 class BatchError(HttpError):
-  """Error occured during batch operations."""
+  """Error occurred during batch operations."""
 
   @util.positional(2)
   def __init__(self, reason, resp=None, content=None):
