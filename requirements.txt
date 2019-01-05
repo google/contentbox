@@ -4,7 +4,7 @@
 #
 google-api-python-client==1.4.0
 django-dbindexer==1.6.1
-Django==1.8.18
+Django>=1.8.19
 djangoajax==2.2.15
 djangotoolbox==1.6.2
 django-modeltranslation==0.9
