@@ -10,7 +10,7 @@ to communities around the world in one place, with a standard format and quality
 
 * Repository and UI to store and distribute content in a scalable, simple and consistent way
 * Metadata to organize and discover content through search
-* Sign-in and subscription s to particular content
+* Sign-in and subscriptions to particular content
 * Content Update process, and user alerts
 * Metrics of content usage and behaviour User and content Admin: accounts and permissions
 * Web Mobile Friendly (Tablets and CellPhones)
@@ -55,7 +55,7 @@ pip install -r requirements.txt -t third_party/
 * In APIs & auth -> APIs Enable Google+ API.
 * In APIs & auth -> Credentials Create an OAuth ID and an API Access
 * Visit [http://localhost:8000/](http://localhost:8000/) (or the corresponding admin port) and enter the datastore 
-viewer. Select the entity kind config_siteconfiguration edit the entity listed, copy the client id, client secret, 
+viewer. Select the entity kind `config_siteconfiguration`, edit the entity listed, copy the client id, client secret, 
 and API key from the previous step and save.
 * Go back to [http://localhost:8080/](http://localhost:8080/) and sign in.
 * Go back to the datastore viewer, select the entity kind `auth_user`, edit your user and make yourself admin by checking 
