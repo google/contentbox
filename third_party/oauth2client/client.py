@@ -1247,7 +1247,7 @@ class OAuth2WebServerFlow(Flow):
       An OAuth2Credentials object that can be used to authorize requests.
 
     Raises:
-      FlowExchangeError if a problem occured exchanging the code for a
+      FlowExchangeError if a problem occurred exchanging the code for a
       refresh_token.
     """
 
